@@ -1,0 +1,39 @@
+@CHARSET "ISO-8859-1";
+
+
+
+
+html, body{     
+    height: 100%; 
+} 
+#cabeza{
+	position: relative;
+	
+}
+#logo{
+	position: relative;
+	top:20px;
+}
+
+#logo2{
+	position:relative;
+	top: 25px;
+}
+
+#logo4{
+	
+	position: relative;
+	top:15px;
+}
+#titulo{
+	position: relative;
+	top:30px;
+	right: 30px;
+	/*tam 350*52 */
+}
+footer {
+	
+ height: 150px;
+ 
+}
+ 

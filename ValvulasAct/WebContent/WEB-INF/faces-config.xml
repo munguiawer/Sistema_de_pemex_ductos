@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.2" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
+ <managed-bean>
+  <managed-bean-name>chinameca</managed-bean-name>
+  <managed-bean-class>tablas.Chinameca</managed-bean-class>
+  <managed-bean-scope>view</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>usuarios</managed-bean-name>
+  <managed-bean-class>sesion.Usuarios</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>erms</managed-bean-name>
+  <managed-bean-class>tablas.Erms</managed-bean-class>
+  <managed-bean-scope>view</managed-bean-scope>
+ </managed-bean>
+ <application/>
+</faces-config>

@@ -1,0 +1,1902 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+
+	<title>Valvulas Erms</title>
+	<link rel="stylesheet" href="boots/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="boots/css/estilo.css" />
+</h:head>
+<body>
+     <!-- si existe un usuario -->
+	<h:outputStylesheet id="usuario">#{usuarios.usuario}</h:outputStylesheet>
+	<div class="container-fluid">
+		<div id="cabeza" align="center">
+			<div class="row">
+				<!--cabezera -->
+				<div class="row">
+					<!-- logo -->
+					<div class="col-xs-2 col-md-2 col-sm-2 " id="lgo" align="center">
+						<img src="image/logo.jpg" />
+					</div>
+					<!-- titulo -->
+					<div id="title"
+						class=" col-xs-2 col-md-5 col-sm-5  col-md-offset-2 ">
+						<div align="center">
+							<p>CALIBRACIÓN DE VALVULAS PSV´S ESTACIÓN DE COMPRESIÓN NO. 3
+								ERM’s</p>
+
+						</div>
+					</div>
+					<!--logo3 -->
+					<div class="col-md-2 col-sm-2 col-xs-2 col-md-offset-1">
+						<div id="logo3" align="right">
+							<img src="image/logo3.png" />
+						</div>
+					</div>
+
+				</div>
+
+				<!-- btn regresar y bienvenida -->
+				<div class="row">
+					<!-- boton regresar -->
+					<div class="col-md-7 col-xs-7 col-sm-7 ">
+						<div align="left" id="boton_back">
+							<form action="../tblMixtas/index.jsp">
+								<button type="submit" class="btn btn-default btn-lg ">
+									<span class="glyphicon glyphicon-circle-arrow-left"></span>
+									Atras
+								</button>
+							</form>
+
+						</div>
+					</div>
+
+
+				</div>
+
+			</div>
+		</div>
+		<!-- cuerpo -->
+
+		<div class="row">
+			<div class="col-md-8 col-lg-offset-2">
+
+				<div align="center">
+
+					<h:form>
+						<div align="left">
+							<p:calendar value="#{erms.dato}" navigator="true"></p:calendar>
+							<p:commandButton value="Actualizar" action="#{erms.tabla()}"
+								update="plan,real,Noreal,Porc,graf,com,tblsEn,tblsFeb,tblsMar,tblsAbr,tblsMay,tblsJun,tblsJul,tblsAgo,tblsSep,tblsOct,tblsNov,tblsDic"></p:commandButton>
+						</div>
+
+						<!-- tabla planeadas -->
+						<p:dataTable id="plan" style="width:1000px;"
+							styleClass="CSSTableGenerator" value="#{erms.listaPlan}"
+							var="p" editable="true">
+							<p:ajax event="rowEdit" listener="#{erms.ActualizarPlan}" />
+							<p:column style="width:10%" headerText="Datos">
+								<p:outputLabel value="#{p.mes}"></p:outputLabel>
+							</p:column>
+							<p:column headerText="ENE">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.enero}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.enero}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="FEB">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.febrero}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.febrero}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="MAR">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.marzo}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.marzo}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="ABR">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.abril}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.abril}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="MAY">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.mayo}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.mayo}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="JUN">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.junio}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.junio}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="JUL">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.julio}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.julio}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="AGO">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.agosto}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.agosto}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="SEP">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.septiembre}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.septiembre}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="OCT">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.octubre}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.octubre}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="NOV">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.noviembre}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.noviembre}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="DIC">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.diciembre}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.diciembre}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="AÑO">
+								<h:outputText value="#{p.year}">
+									<f:convertDateTime pattern="yyyy" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="TOTAL">
+								<p:outputLabel value="#{p.sum}"></p:outputLabel>
+							</p:column>
+							<p:column headerText="MODIF">
+								<p:rowEditor />
+							</p:column>
+						</p:dataTable>
+
+						<!-- tabla realizadas -->
+
+
+
+						<p:dataTable id="real" style="width:1000px;"
+							styleClass="CSSTableGenerator" value="#{erms.listaR}"
+							var="r" editable="true">
+							<p:column style="width:10%" headerText="Datos">
+								<p:outputLabel value="Realizado"></p:outputLabel>
+							</p:column>
+							<p:column headerText="ENE">
+
+								<a href="#" onclick="$('#eneromod').modal('toggle');"
+									class="btn btn-sm btn-success"> <h:outputText
+										value="#{r.enero}" /> <span class="glyphicon glyphicon-file"
+									aria-hidden="true"></span>
+								</a>
+
+
+
+							</p:column>
+							<p:column headerText="FEB">
+
+
+								<a id="febrero" href="#" onclick="$('#febreromod').modal('toggle');" class="btn btn-sm btn-success"> <h:outputText
+										value="#{r.febrero}" /> <span
+									class="glyphicon glyphicon-file" aria-hidden="true"></span>
+								</a>
+
+
+
+							</p:column>
+							<p:column headerText="MAR">
+
+								<a id="marzo" href="#" onclick="$('#marzomod').modal('toggle');" class="btn btn-sm btn-success"> <h:outputText
+										value="#{r.marzo}" /> <span class="glyphicon glyphicon-file"
+									aria-hidden="true"></span></a>
+
+
+
+							</p:column>
+							<p:column headerText="ABR">
+
+								<a id="abril" href="#" onclick="$('#abrilmod').modal('toggle');" class="btn btn-sm btn-success"><h:outputText
+										value="#{r.abril}" /> <span class="glyphicon glyphicon-file"
+									aria-hidden="true"></span></a>
+
+
+
+							</p:column>
+							<p:column headerText="MAY">
+
+								<a id="mayo" href="#" onclick="$('#mayomod').modal('toggle');" class="btn btn-sm btn-success"> <h:outputText
+										value="#{r.mayo}" /> <span class="glyphicon glyphicon-file"
+									aria-hidden="true"></span></a>
+
+
+
+							</p:column>
+							<p:column headerText="JUN">
+
+								<a id="junio" href="#" onclick="$('#juniomod').modal('toggle');" class="btn btn-sm btn-success"> <h:outputText
+										value="#{r.junio}" /> <span class="glyphicon glyphicon-file"
+									aria-hidden="true"></span></a>
+
+
+
+							</p:column>
+							<p:column headerText="JUL">
+
+								<a id="julio" onclick="$('#juliomod').modal('toggle');" href="#" class="btn btn-sm btn-success"> <h:outputText
+										value="#{r.julio}" /> <span class="glyphicon glyphicon-file"
+									aria-hidden="true"></span></a>
+
+
+							</p:column>
+							<p:column headerText="AGO">
+
+								<a id="agosto" href="#" onclick="$('#agostomod').modal('toggle');" class="btn btn-sm btn-success"> <h:outputText
+										value="#{r.agosto}" /> <span class="glyphicon glyphicon-file"
+									aria-hidden="true"></span></a>
+
+
+
+							</p:column>
+							<p:column headerText="SEP">
+
+								<a id="septiembre" href="#" onclick="$('#septiembremod').modal('toggle');" class="btn btn-sm btn-success">
+									<h:outputText value="#{r.septiembre}" /> <span
+									class="glyphicon glyphicon-file" aria-hidden="true"></span>
+								</a>
+
+							</p:column>
+							<p:column headerText="OCT">
+
+								<a id="octubre" href="#" onclick="$('#octubremod').modal('toggle');" class="btn btn-sm btn-success"> <h:outputText
+										value="#{r.octubre}" /> <span
+									class="glyphicon glyphicon-file" aria-hidden="true"></span></a>
+
+
+							</p:column>
+							<p:column headerText="NOV">
+
+								<a id="noviembre" href="#" onclick="$('#noviembremod').modal('toggle');" class="btn btn-sm btn-success"> <h:outputText
+										value="#{r.noviembre}" /> <span
+									class="glyphicon glyphicon-file" aria-hidden="true"></span></a>
+
+							</p:column>
+							<p:column headerText="DIC">
+
+								<a id="diciembre" href="#" onclick="$('#diciembremod').modal('toggle');" class="btn btn-sm btn-success"> <h:outputText
+										value="#{r.diciembre}" /> <span
+									class="glyphicon glyphicon-file" aria-hidden="true"></span></a>
+
+							</p:column>
+							<p:column headerText="AÑO">
+								<h:outputText value="#{erms.dato}">
+									<f:convertDateTime pattern="yyyy" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="TOTAL">
+								<p:outputLabel value="#{r.sum}"></p:outputLabel>
+							</p:column>
+							<p:column>
+
+							</p:column>
+						</p:dataTable>
+
+
+
+
+						<!-- No realizadas -->
+						<p:dataTable id="Noreal" style="width:1000px;"
+							styleClass="CSSTableGenerator" value="#{erms.listaNR}"
+							var="p" editable="true">
+							<p:column style="width:10%" headerText="Datos">
+								<p:outputLabel value="NoRealizado"></p:outputLabel>
+							</p:column>
+
+							<p:column headerText="ENE">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.enero}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.enero}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="FEB">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.febrero}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.febrero}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="MAR">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.marzo}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.marzo}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="ABR">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.abril}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.abril}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="MAY">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.mayo}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.mayo}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="JUN">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.junio}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.junio}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="JUL">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.julio}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.julio}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="AGO">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.agosto}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.agosto}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="SEP">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.septiembre}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.septiembre}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="OCT">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.octubre}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.octubre}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="NOV">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.noviembre}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.noviembre}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="DIC">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.diciembre}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.diciembre}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="AÑO">
+								<h:outputText value="#{erms.dato}">
+									<f:convertDateTime pattern="yyyy" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="TOTAL">
+								<p:outputLabel value="#{p.sum}"></p:outputLabel>
+							</p:column>
+							<p:column></p:column>
+						</p:dataTable>
+
+
+						<!-- Porcentaje -->
+						<p:dataTable id="Porc" style="width:1000px;"
+							styleClass="CSSTableGenerator" value="#{erms.listaPorc}"
+							var="p" editable="true">
+							<p:column style="width:10%" headerText="Datos">
+								<p:outputLabel value="%"></p:outputLabel>
+							</p:column>
+
+							<p:column headerText="ENE">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.enero}" />
+
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.enero}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="FEB">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.febrero}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.febrero}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="MAR">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.marzo}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.marzo}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="ABR">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.abril}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.abril}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="MAY">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.mayo}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.mayo}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="JUN">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.junio}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.junio}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="JUL">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.julio}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.julio}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="AGO">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.agosto}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.agosto}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="SEP">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.septiembre}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.septiembre}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="OCT">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.octubre}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.octubre}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="NOV">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.noviembre}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.noviembre}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="DIC">
+								<p:cellEditor>
+									<f:facet name="output">
+										<h:outputText value="#{p.diciembre}" />
+									</f:facet>
+									<f:facet name="input">
+										<h:inputText value="#{p.diciembre}" />
+									</f:facet>
+								</p:cellEditor>
+							</p:column>
+							<p:column headerText="AÑO">
+								<h:outputText value="#{erms.dato}">
+									<f:convertDateTime pattern="yyyy" />
+								</h:outputText>
+							</p:column>
+							<p:column headerText="TOTAL">
+								<p:outputLabel value="#{p.porc}"></p:outputLabel>
+							</p:column>
+							<p:column></p:column>
+						</p:dataTable>
+
+						<br />
+						<br />
+
+						<!-- Grafica  -->
+
+
+						<div class="row">
+							<div class="col-md-6">
+								<p:chart id="graf" type="bar" model="#{erms.model}" />
+							</div>
+
+							<!-- comentarios -->
+
+							<div class="col-md-6 " align="right">
+								<p:dataTable id="com" styleClass="CSSTableGenerator"
+									value="#{erms.listCom}" var="d" editable="true">
+									<p:ajax event="rowEdit" listener="#{erms.update}" />
+									<p:column style="width:15%" headerText="Meses">
+										<p:outputLabel value="#{d.meses}" />
+									</p:column>
+									<p:column headerText="Comentario">
+										<p:cellEditor>
+											<f:facet name="output">
+												<h:outputText value="#{d.comentario}" />
+											</f:facet>
+											<f:facet name="input">
+												<h:inputText value="#{d.comentario}" />
+											</f:facet>
+										</p:cellEditor>
+									</p:column>
+									<p:column style="width:15%" headerText="AÑO">
+										<h:outputText value="#{d.year}">
+											<f:convertDateTime pattern="yyyy" />
+										</h:outputText>
+									</p:column>
+									<p:column style="width:20%" headerText="MODIF">
+										<p:rowEditor />
+									</p:column>
+								</p:dataTable>
+							</div>
+						</div>
+						<!-- Meses -->
+						<h:outputScript library="primefaces" name="jquery/jquery.js"
+							target="head" />
+						<script src="boots/js/bootstrap.js"></script>
+
+
+						<!-- enero -->
+						<div class="modal fade" id="eneromod" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title" id="myModalLabel">Enero</h4>
+									</div>
+									<div class="modal-body">
+
+
+										<p:outputLabel value="Suba el archivo pdf acorde al mes "></p:outputLabel>
+										<p:fileUpload multiple="true" update="tblsEn"
+											fileUploadListener="#{erms.subirEnero}"
+											allowTypes="/(\.|\/)(file|pdf)$/" sizeLimit="30000000"
+											description="Select Images" />
+
+									
+
+										<!-- tabla -->
+										
+										<div class="row">
+
+
+
+
+											<div class="4">
+												<div>
+
+													<br />
+
+													<p:dataTable id="tblsEn" value="#{erms.getListaEnero()}"
+														var="g" editable="true">
+                                          
+														<p:column headerText="mes">
+															<h:outputText value="#{g.mes}" />
+														</p:column>
+														<p:column headerText="nombre">
+															<h:outputText value="#{g.nombre}" />
+														</p:column>
+														<p:column headerText="Ver">
+
+															<a href="#" class="btn  btn-success"
+																onClick="window.open('#{erms.ServidorERM()}#{g.pdf}', this.target, 'width=300,height=400'); return false;">
+																<h:outputLabel value="PDF" />
+															</a>
+
+														</p:column>
+														<p:column headerText="subido por:">
+															<h:outputText value="#{g.usuario}" />
+														</p:column>
+														<p:column headerText="Validacion:">
+															<h:outputText value="#{g.valido}" />
+														</p:column>
+														<p:column headerText="Eliminar">
+
+															<h:commandButton action="#{erms.DeletePdf(g)}"
+																value="borrar">
+																<p:ajax event="click" update="tblsEn"
+																	listener="#{erms.DeletePdf(g)}" />
+															</h:commandButton>
+														</p:column>
+														<p:column headerText="Validar">
+
+															<h:commandButton action="#{erms.ValidarPdf(g)}"
+																value="Validar">
+																<p:ajax event="click" update="tblsEn"
+																	listener="#{erms.ValidarPdf(g)}" />
+															</h:commandButton>
+														</p:column>
+
+													</p:dataTable>
+
+
+
+												</div>
+											</div>
+										</div>
+										<!-- fin de row tabla -->
+
+
+
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success"
+											data-dismiss="modal">cerrar</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Fin enero -->
+						
+						
+						
+						<!-- febrero -->
+						<div class="modal fade" id="febreromod" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title" id="myModalLabel">Febrero</h4>
+									</div>
+									<div class="modal-body">
+
+
+										<p:outputLabel value="Suba el archivo pdf acorde al mes "></p:outputLabel>
+										<p:fileUpload multiple="true" update="tblsFeb"
+											fileUploadListener="#{erms.subirFebrero}"
+											allowTypes="/(\.|\/)(file|pdf)$/" sizeLimit="30000000"
+											description="Select Images" />
+
+									
+
+										<!-- tabla -->
+										
+										<div class="row">
+
+
+
+
+											<div class="4">
+												<div>
+
+													<br />
+
+													<p:dataTable id="tblsFeb" value="#{erms.listaFebrero}"
+														var="g" editable="true">
+                                          
+														<p:column headerText="mes">
+															<h:outputText value="#{g.mes}" />
+														</p:column>
+														<p:column headerText="nombre">
+															<h:outputText value="#{g.nombre}" />
+														</p:column>
+														<p:column headerText="Ver">
+
+															<a href="#" class="btn  btn-success"
+																onClick="window.open('#{erms.ServidorERM()}#{g.pdf}', this.target, 'width=300,height=400'); return false;">
+																<h:outputLabel value="PDF" />
+															</a>
+
+														</p:column>
+														<p:column headerText="subido por:">
+															<h:outputText value="#{g.usuario}" />
+														</p:column>
+														<p:column headerText="Validacion:">
+															<h:outputText value="#{g.valido}" />
+														</p:column>
+														<p:column headerText="Eliminar">
+
+															<h:commandButton action="#{erms.DeletePdf(g)}"
+																value="borrar">
+																<p:ajax event="click" update="tblsFeb"
+																	listener="#{erms.DeletePdf(g)}" />
+															</h:commandButton>
+														</p:column>
+														<p:column headerText="Validar">
+
+															<h:commandButton action="#{erms.ValidarPdf(g)}"
+																value="Validar">
+																<p:ajax event="click" update="tblsFeb"
+																	listener="#{erms.ValidarPdf(g)}" />
+															</h:commandButton>
+														</p:column>
+
+													</p:dataTable>
+
+
+
+												</div>
+											</div>
+										</div>
+										<!-- fin de row tabla -->
+
+
+
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success"
+											data-dismiss="modal">cerrar</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Fin febrero -->
+						
+						
+						<!-- Marzo -->
+						<div class="modal fade" id="marzomod" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title" id="myModalLabel">Marzo</h4>
+									</div>
+									<div class="modal-body">
+
+
+										<p:outputLabel value="Suba el archivo pdf acorde al mes "></p:outputLabel>
+										<!-- edit -->
+										<p:fileUpload multiple="true" update="tblsMar"
+											fileUploadListener="#{erms.subirMarzo}"
+											allowTypes="/(\.|\/)(file|pdf)$/" sizeLimit="30000000"
+											description="Select Images" />
+
+									
+
+										<!-- tabla -->
+										
+										<div class="row">
+
+
+
+
+											<div class="4">
+												<div>
+
+													<br />
+                                                       <!-- edit -->
+													<p:dataTable id="tblsMar" value="#{erms.listaMarzo}"
+														var="g" editable="true">
+                                          
+														<p:column headerText="mes">
+															<h:outputText value="#{g.mes}" />
+														</p:column>
+														<p:column headerText="nombre">
+															<h:outputText value="#{g.nombre}" />
+														</p:column>
+														<p:column headerText="Ver">
+
+															<a href="#" class="btn  btn-success"
+																onClick="window.open('#{erms.ServidorERM()}#{g.pdf}', this.target, 'width=300,height=400'); return false;">
+																<h:outputLabel value="PDF" />
+															</a>
+
+														</p:column>
+														<p:column headerText="subido por:">
+															<h:outputText value="#{g.usuario}" />
+														</p:column>
+														<p:column headerText="Validacion:">
+															<h:outputText value="#{g.valido}" />
+														</p:column>
+														<p:column headerText="Eliminar">
+
+															<h:commandButton action="#{erms.DeletePdf(g)}"
+																value="borrar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsMar" 
+																	listener="#{erms.DeletePdf(g)}" />
+															</h:commandButton>
+														</p:column>
+														<p:column headerText="Validar">
+
+															<h:commandButton action="#{erms.ValidarPdf(g)}"
+																value="Validar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsMar"
+																	listener="#{erms.ValidarPdf(g)}" />
+															</h:commandButton>
+														</p:column>
+
+													</p:dataTable>
+
+
+
+												</div>
+											</div>
+										</div>
+										
+
+
+
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success"
+											data-dismiss="modal">cerrar</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Fin Marzo -->
+						
+						
+						<!-- Abril -->
+						<div class="modal fade" id="abrilmod" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title" id="myModalLabel">Abril</h4>
+									</div>
+									<div class="modal-body">
+
+
+										<p:outputLabel value="Suba el archivo pdf acorde al mes "></p:outputLabel>
+										<!-- edit -->
+										<p:fileUpload multiple="true" update="tblsAbr"
+											fileUploadListener="#{erms.subirAbril}"
+											allowTypes="/(\.|\/)(file|pdf)$/" sizeLimit="30000000"
+											description="Select Images" />
+
+									
+
+										<!-- tabla -->
+										
+										<div class="row">
+
+
+
+
+											<div class="4">
+												<div>
+
+													<br />
+                                                       <!-- edit -->
+													<p:dataTable id="tblsAbr" value="#{erms.listaAbril}"
+														var="g" editable="true">
+                                          
+														<p:column headerText="mes">
+															<h:outputText value="#{g.mes}" />
+														</p:column>
+														<p:column headerText="nombre">
+															<h:outputText value="#{g.nombre}" />
+														</p:column>
+														<p:column headerText="Ver">
+
+															<a href="#" class="btn  btn-success"
+																onClick="window.open('#{erms.ServidorERM()}#{g.pdf}', this.target, 'width=300,height=400'); return false;">
+																<h:outputLabel value="PDF" />
+															</a>
+
+														</p:column>
+														<p:column headerText="subido por:">
+															<h:outputText value="#{g.usuario}" />
+														</p:column>
+														<p:column headerText="Validacion:">
+															<h:outputText value="#{g.valido}" />
+														</p:column>
+														<p:column headerText="Eliminar">
+
+															<h:commandButton action="#{erms.DeletePdf(g)}"
+																value="borrar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsAbr" 
+																	listener="#{erms.DeletePdf(g)}" />
+															</h:commandButton>
+														</p:column>
+														<p:column headerText="Validar">
+
+															<h:commandButton action="#{erms.ValidarPdf(g)}"
+																value="Validar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsAbr"
+																	listener="#{erms.ValidarPdf(g)}" />
+															</h:commandButton>
+														</p:column>
+
+													</p:dataTable>
+
+
+
+												</div>
+											</div>
+										</div>
+										
+
+
+
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success"
+											data-dismiss="modal">cerrar</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Fin Abril-->
+						
+						
+						<!-- Mayo -->
+						<div class="modal fade" id="mayomod" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<h4 class="modal-title" id="myModalLabel">Mayo</h4>
+									</div>
+									<div class="modal-body">
+
+
+										<p:outputLabel value="Suba el archivo pdf acorde al mes "></p:outputLabel>
+										<!-- edit -->
+										<p:fileUpload multiple="true" update="tblsMay"
+											fileUploadListener="#{erms.subirMayo}"
+											allowTypes="/(\.|\/)(file|pdf)$/" sizeLimit="30000000"
+											description="Select Images" />
+
+									
+
+										<!-- tabla -->
+										
+										<div class="row">
+
+
+
+
+											<div class="4">
+												<div>
+
+													<br />
+                                                       <!-- edit -->
+													<p:dataTable id="tblsMay" value="#{erms.listaMayo}"
+														var="g" editable="true">
+                                          
+														<p:column headerText="mes">
+															<h:outputText value="#{g.mes}" />
+														</p:column>
+														<p:column headerText="nombre">
+															<h:outputText value="#{g.nombre}" />
+														</p:column>
+														<p:column headerText="Ver">
+
+															<a href="#" class="btn  btn-success"
+																onClick="window.open('#{erms.ServidorERM()}#{g.pdf}', this.target, 'width=300,height=400'); return false;">
+																<h:outputLabel value="PDF" />
+															</a>
+
+														</p:column>
+														<p:column headerText="subido por:">
+															<h:outputText value="#{g.usuario}" />
+														</p:column>
+														<p:column headerText="Validacion:">
+															<h:outputText value="#{g.valido}" />
+														</p:column>
+														<p:column headerText="Eliminar">
+
+															<h:commandButton action="#{erms.DeletePdf(g)}"
+																value="borrar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsMay" 
+																	listener="#{erms.DeletePdf(g)}" />
+															</h:commandButton>
+														</p:column>
+														<p:column headerText="Validar">
+
+															<h:commandButton action="#{erms.ValidarPdf(g)}"
+																value="Validar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsMay"
+																	listener="#{erms.ValidarPdf(g)}" />
+															</h:commandButton>
+														</p:column>
+
+													</p:dataTable>
+
+
+
+												</div>
+											</div>
+										</div>
+										
+
+
+
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success"
+											data-dismiss="modal">cerrar</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Fin Mayo-->
+						
+						<!-- junio -->
+						<div class="modal fade" id="juniomod" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<!-- Edit -->
+										<h4 class="modal-title" id="myModalLabel">julio</h4>
+									</div>
+									<div class="modal-body">
+
+
+										<p:outputLabel value="Suba el archivo pdf acorde al mes "></p:outputLabel>
+										<!-- edit -->
+										<p:fileUpload multiple="true" update="tblsJun"
+											fileUploadListener="#{erms.subirJunio}"
+											allowTypes="/(\.|\/)(file|pdf)$/" sizeLimit="30000000"
+											description="Select Images" />
+
+									
+
+										<!-- tabla -->
+										
+										<div class="row">
+
+
+
+
+											<div class="4">
+												<div>
+
+													<br />
+                                                       <!-- edit -->
+													<p:dataTable id="tblsJun" value="#{erms.listaJunio}"
+														var="g" editable="true">
+                                          
+														<p:column headerText="mes">
+															<h:outputText value="#{g.mes}" />
+														</p:column>
+														<p:column headerText="nombre">
+															<h:outputText value="#{g.nombre}" />
+														</p:column>
+														<p:column headerText="Ver">
+
+															<a href="#" class="btn  btn-success"
+																onClick="window.open('#{erms.ServidorERM()}#{g.pdf}', this.target, 'width=300,height=400'); return false;">
+																<h:outputLabel value="PDF" />
+															</a>
+
+														</p:column>
+														<p:column headerText="subido por:">
+															<h:outputText value="#{g.usuario}" />
+														</p:column>
+														<p:column headerText="Validacion:">
+															<h:outputText value="#{g.valido}" />
+														</p:column>
+														<p:column headerText="Eliminar">
+
+															<h:commandButton action="#{erms.DeletePdf(g)}"
+																value="borrar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsJun" 
+																	listener="#{erms.DeletePdf(g)}" />
+															</h:commandButton>
+														</p:column>
+														<p:column headerText="Validar">
+
+															<h:commandButton action="#{erms.ValidarPdf(g)}"
+																value="Validar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsJun"
+																	listener="#{erms.ValidarPdf(g)}" />
+															</h:commandButton>
+														</p:column>
+
+													</p:dataTable>
+
+
+
+												</div>
+											</div>
+										</div>
+										
+
+
+
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success"
+											data-dismiss="modal">cerrar</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Fin JUNIO-->
+						
+						<!-- julio -->
+						<div class="modal fade" id="juliomod" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<!-- edit -->
+										<h4 class="modal-title" id="myModalLabel">Julio</h4>
+									</div>
+									<div class="modal-body">
+
+
+										<p:outputLabel value="Suba el archivo pdf acorde al mes "></p:outputLabel>
+										<!-- edit -->
+										<p:fileUpload multiple="true" update="tblsJul"
+											fileUploadListener="#{erms.subirJulio}"
+											allowTypes="/(\.|\/)(file|pdf)$/" sizeLimit="30000000"
+											description="Select Images" />
+
+									
+
+										<!-- tabla -->
+										
+										<div class="row">
+
+
+
+
+											<div class="4">
+												<div>
+
+													<br />
+                                                       <!-- edit -->
+													<p:dataTable id="tblsJul" value="#{erms.listaJulio}"
+														var="g" editable="true">
+                                          
+														<p:column headerText="mes">
+															<h:outputText value="#{g.mes}" />
+														</p:column>
+														<p:column headerText="nombre">
+															<h:outputText value="#{g.nombre}" />
+														</p:column>
+														<p:column headerText="Ver">
+
+															<a href="#" class="btn  btn-success"
+																onClick="window.open('#{erms.ServidorERM()}#{g.pdf}', this.target, 'width=300,height=400'); return false;">
+																<h:outputLabel value="PDF" />
+															</a>
+
+														</p:column>
+														<p:column headerText="subido por:">
+															<h:outputText value="#{g.usuario}" />
+														</p:column>
+														<p:column headerText="Validacion:">
+															<h:outputText value="#{g.valido}" />
+														</p:column>
+														<p:column headerText="Eliminar">
+
+															<h:commandButton action="#{erms.DeletePdf(g)}"
+																value="borrar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsJul" 
+																	listener="#{erms.DeletePdf(g)}" />
+															</h:commandButton>
+														</p:column>
+														<p:column headerText="Validar">
+
+															<h:commandButton action="#{erms.ValidarPdf(g)}"
+																value="Validar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsJul"
+																	listener="#{erms.ValidarPdf(g)}" />
+															</h:commandButton>
+														</p:column>
+
+													</p:dataTable>
+
+
+
+												</div>
+											</div>
+										</div>
+										
+
+
+
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success"
+											data-dismiss="modal">cerrar</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Fin JUlIO-->
+						
+						
+						<!-- agosto-->
+						<div class="modal fade" id="agostomod" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<!-- edit -->
+										<h4 class="modal-title" id="myModalLabel">Agosto</h4>
+									</div>
+									<div class="modal-body">
+
+
+										<p:outputLabel value="Suba el archivo pdf acorde al mes "></p:outputLabel>
+										<!-- edit -->
+										<p:fileUpload multiple="true" update="tblsAgo"
+											fileUploadListener="#{erms.subirAgosto}"
+											allowTypes="/(\.|\/)(file|pdf)$/" sizeLimit="30000000"
+											description="Select Images" />
+
+									
+
+										<!-- tabla -->
+										
+										<div class="row">
+
+
+
+
+											<div class="4">
+												<div>
+
+													<br />
+                                                       <!-- edit -->
+													<p:dataTable id="tblsAgo" value="#{erms.listaAgosto}"
+														var="g" editable="true">
+                                          
+														<p:column headerText="mes">
+															<h:outputText value="#{g.mes}" />
+														</p:column>
+														<p:column headerText="nombre">
+															<h:outputText value="#{g.nombre}" />
+														</p:column>
+														<p:column headerText="Ver">
+
+															<a href="#" class="btn  btn-success"
+																onClick="window.open('#{erms.ServidorERM()}#{g.pdf}', this.target, 'width=300,height=400'); return false;">
+																<h:outputLabel value="PDF" />
+															</a>
+
+														</p:column>
+														<p:column headerText="subido por:">
+															<h:outputText value="#{g.usuario}" />
+														</p:column>
+														<p:column headerText="Validacion:">
+															<h:outputText value="#{g.valido}" />
+														</p:column>
+														<p:column headerText="Eliminar">
+
+															<h:commandButton action="#{erms.DeletePdf(g)}"
+																value="borrar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsAgo" 
+																	listener="#{erms.DeletePdf(g)}" />
+															</h:commandButton>
+														</p:column>
+														<p:column headerText="Validar">
+
+															<h:commandButton action="#{erms.ValidarPdf(g)}"
+																value="Validar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsAgo"
+																	listener="#{erms.ValidarPdf(g)}" />
+															</h:commandButton>
+														</p:column>
+
+													</p:dataTable>
+
+
+
+												</div>
+											</div>
+										</div>
+										
+
+
+
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success"
+											data-dismiss="modal">cerrar</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Fin agosto-->
+						
+						
+						<!-- septiembre-->
+						<div class="modal fade" id="septiembremod" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<!-- edit -->
+										<h4 class="modal-title" id="myModalLabel">Septiembre</h4>
+									</div>
+									<div class="modal-body">
+
+
+										<p:outputLabel value="Suba el archivo pdf acorde al mes "></p:outputLabel>
+										<!-- edit -->
+										<p:fileUpload multiple="true" update="tblsSep"
+											fileUploadListener="#{erms.subirSeptiembre}"
+											allowTypes="/(\.|\/)(file|pdf)$/" sizeLimit="30000000"
+											description="Select Images" />
+
+									
+
+										<!-- tabla -->
+										
+										<div class="row">
+
+
+
+
+											<div class="4">
+												<div>
+
+													<br />
+                                                       <!-- edit -->
+													<p:dataTable id="tblsSep" value="#{erms.listaSeptiembre}"
+														var="g" editable="true">
+                                          
+														<p:column headerText="mes">
+															<h:outputText value="#{g.mes}" />
+														</p:column>
+														<p:column headerText="nombre">
+															<h:outputText value="#{g.nombre}" />
+														</p:column>
+														<p:column headerText="Ver">
+
+															<a href="#" class="btn  btn-success"
+																onClick="window.open('#{erms.ServidorERM()}#{g.pdf}', this.target, 'width=300,height=400'); return false;">
+																<h:outputLabel value="PDF" />
+															</a>
+
+														</p:column>
+														<p:column headerText="subido por:">
+															<h:outputText value="#{g.usuario}" />
+														</p:column>
+														<p:column headerText="Validacion:">
+															<h:outputText value="#{g.valido}" />
+														</p:column>
+														<p:column headerText="Eliminar">
+
+															<h:commandButton action="#{erms.DeletePdf(g)}"
+																value="borrar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsSep" 
+																	listener="#{erms.DeletePdf(g)}" />
+															</h:commandButton>
+														</p:column>
+														<p:column headerText="Validar">
+
+															<h:commandButton action="#{erms.ValidarPdf(g)}"
+																value="Validar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsSep"
+																	listener="#{erms.ValidarPdf(g)}" />
+															</h:commandButton>
+														</p:column>
+
+													</p:dataTable>
+
+
+
+												</div>
+											</div>
+										</div>
+										
+
+
+
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success"
+											data-dismiss="modal">cerrar</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Fin septiemre-->
+						
+						
+						<!-- octubre-->
+						<div class="modal fade" id="octubremod" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<!-- edit -->
+										<h4 class="modal-title" id="myModalLabel">Octubre</h4>
+									</div>
+									<div class="modal-body">
+
+
+										<p:outputLabel value="Suba el archivo pdf acorde al mes "></p:outputLabel>
+										<!-- edit -->
+										<p:fileUpload multiple="true" update="tblsOct"
+											fileUploadListener="#{erms.subirOctubre}"
+											allowTypes="/(\.|\/)(file|pdf)$/" sizeLimit="30000000"
+											description="Select Images" />
+
+									
+
+										<!-- tabla -->
+										
+										<div class="row">
+
+
+
+
+											<div class="4">
+												<div>
+
+													<br />
+                                                       <!-- edit -->
+													<p:dataTable id="tblsOct" value="#{erms.listaOctubre}"
+														var="g" editable="true">
+                                          
+														<p:column headerText="mes">
+															<h:outputText value="#{g.mes}" />
+														</p:column>
+														<p:column headerText="nombre">
+															<h:outputText value="#{g.nombre}" />
+														</p:column>
+														<p:column headerText="Ver">
+
+															<a href="#" class="btn  btn-success"
+																onClick="window.open('#{erms.ServidorERM()}#{g.pdf}', this.target, 'width=300,height=400'); return false;">
+																<h:outputLabel value="PDF" />
+															</a>
+
+														</p:column>
+														<p:column headerText="subido por:">
+															<h:outputText value="#{g.usuario}" />
+														</p:column>
+														<p:column headerText="Validacion:">
+															<h:outputText value="#{g.valido}" />
+														</p:column>
+														<p:column headerText="Eliminar">
+
+															<h:commandButton action="#{erms.DeletePdf(g)}"
+																value="borrar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsOct" 
+																	listener="#{erms.DeletePdf(g)}" />
+															</h:commandButton>
+														</p:column>
+														<p:column headerText="Validar">
+
+															<h:commandButton action="#{erms.ValidarPdf(g)}"
+																value="Validar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsOct"
+																	listener="#{erms.ValidarPdf(g)}" />
+															</h:commandButton>
+														</p:column>
+
+													</p:dataTable>
+
+
+
+												</div>
+											</div>
+										</div>
+										
+
+
+
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success"
+											data-dismiss="modal">cerrar</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Fin octubre-->
+						
+						<!-- noviembre-->
+						<div class="modal fade" id="noviembremod" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<!-- edit -->
+										<h4 class="modal-title" id="myModalLabel">Noviembre</h4>
+									</div>
+									<div class="modal-body">
+
+
+										<p:outputLabel value="Suba el archivo pdf acorde al mes "></p:outputLabel>
+										<!-- edit -->
+										<p:fileUpload multiple="true" update="tblsNov"
+											fileUploadListener="#{erms.subirNoviembre}"
+											allowTypes="/(\.|\/)(file|pdf)$/" sizeLimit="30000000"
+											description="Select Images" />
+
+									
+
+										<!-- tabla -->
+										
+										<div class="row">
+
+
+
+
+											<div class="4">
+												<div>
+
+													<br />
+                                                       <!-- edit -->
+													<p:dataTable id="tblsNov" value="#{erms.listaNoviembre}"
+														var="g" editable="true">
+                                          
+														<p:column headerText="mes">
+															<h:outputText value="#{g.mes}" />
+														</p:column>
+														<p:column headerText="nombre">
+															<h:outputText value="#{g.nombre}" />
+														</p:column>
+														<p:column headerText="Ver">
+
+															<a href="#" class="btn  btn-success"
+																onClick="window.open('#{erms.ServidorERM()}#{g.pdf}', this.target, 'width=300,height=400'); return false;">
+																<h:outputLabel value="PDF" />
+															</a>
+
+														</p:column>
+														<p:column headerText="subido por:">
+															<h:outputText value="#{g.usuario}" />
+														</p:column>
+														<p:column headerText="Validacion:">
+															<h:outputText value="#{g.valido}" />
+														</p:column>
+														<p:column headerText="Eliminar">
+
+															<h:commandButton action="#{erms.DeletePdf(g)}"
+																value="borrar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsNov" 
+																	listener="#{erms.DeletePdf(g)}" />
+															</h:commandButton>
+														</p:column>
+														<p:column headerText="Validar">
+
+															<h:commandButton action="#{erms.ValidarPdf(g)}"
+																value="Validar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsNov"
+																	listener="#{erms.ValidarPdf(g)}" />
+															</h:commandButton>
+														</p:column>
+
+													</p:dataTable>
+
+
+
+												</div>
+											</div>
+										</div>
+										
+
+
+
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success"
+											data-dismiss="modal">cerrar</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Fin noviembre-->
+						
+						
+						<!-- diciembre-->
+						<div class="modal fade" id="diciembremod" tabindex="-1" role="dialog"
+							aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal">
+											<span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+										</button>
+										<!-- edit -->
+										<h4 class="modal-title" id="myModalLabel">Diciembre</h4>
+									</div>
+									<div class="modal-body">
+
+
+										<p:outputLabel value="Suba el archivo pdf acorde al mes "></p:outputLabel>
+										<!-- edit -->
+										<p:fileUpload multiple="true" update="tblsDic"
+											fileUploadListener="#{erms.subirDiciembre}"
+											allowTypes="/(\.|\/)(file|pdf)$/" sizeLimit="30000000"
+											description="Select Images" />
+
+									
+
+										<!-- tabla -->
+										
+										<div class="row">
+
+
+
+
+											<div class="4">
+												<div>
+
+													<br />
+                                                       <!-- edit -->
+													<p:dataTable id="tblsDic" value="#{erms.listaDiciembre}"
+														var="g" editable="true">
+                                          
+														<p:column headerText="mes">
+															<h:outputText value="#{g.mes}" />
+														</p:column>
+														<p:column headerText="nombre">
+															<h:outputText value="#{g.nombre}" />
+														</p:column>
+														<p:column headerText="Ver">
+
+															<a href="#" class="btn  btn-success"
+																onClick="window.open('#{erms.ServidorERM()}#{g.pdf}', this.target, 'width=300,height=400'); return false;">
+																<h:outputLabel value="PDF" />
+															</a>
+
+														</p:column>
+														<p:column headerText="subido por:">
+															<h:outputText value="#{g.usuario}" />
+														</p:column>
+														<p:column headerText="Validacion:">
+															<h:outputText value="#{g.valido}" />
+														</p:column>
+														<p:column headerText="Eliminar">
+
+															<h:commandButton action="#{erms.DeletePdf(g)}"
+																value="borrar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsDic" 
+																	listener="#{erms.DeletePdf(g)}" />
+															</h:commandButton>
+														</p:column>
+														<p:column headerText="Validar">
+
+															<h:commandButton action="#{erms.ValidarPdf(g)}"
+																value="Validar">
+																<!-- edit -->
+																<p:ajax event="click" update="tblsDic"
+																	listener="#{erms.ValidarPdf(g)}" />
+															</h:commandButton>
+														</p:column>
+
+													</p:dataTable>
+
+
+
+												</div>
+											</div>
+										</div>
+										
+
+
+
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success"
+											data-dismiss="modal">cerrar</button>
+
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- Fin diciembre-->
+
+
+					</h:form>
+				</div>
+
+
+			</div>
+		</div>
+
+
+
+
+	</div>
+</body>
+</html>
+
+

@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+
+	<title>SASP</title>
+	<link rel="stylesheet" href="boots/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="boots/css/estilo.css" />
+</h:head>
+<body>
+
+
+	<!-- cabezera  -->
+	<div class="container-fluid">
+		<div id="cabeza">
+			<div class="row">
+				<div class="col-md-2 col-xs-2 col-sm-2 col-md-offset-1">
+					<div id="logo">
+						<img src="image/logo.jpg" alt="" />
+					</div>
+				</div>
+
+				<div class="col-md-2 col-xs-2 col-sm-2 ">
+					<div id="logo2">
+						<img src="image/logo_sasp.png" alt="" />
+					</div>
+				</div>
+
+				<div class="col-md-3 col-xs-3 col-sm-4 ">
+					<div id="titulo" align="center">
+						<img src="image/titulo.png" alt="" />
+					</div>
+				</div>
+
+				<div class="col-md-2 col-xs-2 col-sm-2  ">
+					<div id="logo3">
+						<img src="image/logo_sspa.png" alt="" />
+					</div>
+				</div>
+
+				<div class="col-md-2 col-xs-2 col-sm-2  ">
+					<div id="logo4">
+						<img src="image/logo3.png" alt="" />
+					</div>
+				</div>
+
+			</div>
+			
+			<div class="row">
+				<div class="col-md-11 col-md-offset-1">
+					<div id="back">
+						<form action="../tblMixtas/index.jsp">
+							<button type="submit" class="btn btn-default btn-lg ">
+								<span class="glyphicon glyphicon-circle-arrow-left"></span>
+								Atras
+							</button>
+						</form>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+	</div>
+
+	<!-- cuerpo -->
+
+	<div class="container-fluid">
+		<br /> <br />
+		<div id="cuerpo">
+			<div class="row">
+			<div class="col-md-4 col-md-offset-1">
+			        <div id="asp_pir">
+			           <img src="image/asp.jpg" />
+			        </div>
+			</div>
+				<div class="col-md-7">
+				
+					<ul class="nav nav-tabs" role="tablist" id="myTab">
+						<li class="active"><a href="#mensual" role="tab"
+							data-toggle="tab">Mensual</a></li>
+						<li><a href="#trimestral" role="tab" data-toggle="tab">Trimestral</a>
+						</li>
+						<li><a href="#semestral" role="tab" data-toggle="tab">Semestral</a>
+						</li>
+
+					</ul>
+
+					<div class="tab-content">
+						<div class="tab-pane active" id="mensual">
+							<br />
+							<div class="col-md-11">
+								<p:chart type="line" model="#{graficas_bean.mensual}"
+									rendered="true"></p:chart>
+							</div>
+
+						</div>
+						<div class="tab-pane active" id="trimestral">
+							<br />
+							<p:chart type="line" model="#{graficas_bean.trimestral}"
+								rendered="true"></p:chart>
+						</div>
+						<div class="tab-pane active" id="semestral">
+							<br />
+							<p:chart type="line" model="#{graficas_bean.semestral}"
+								rendered="true"></p:chart>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<br />
+
+	<!--  pie de pagina  -->
+	<div class="footer">
+
+	
+		
+
+		<div class="col-md-12 ">
+			<div id="img_pie" align="center">
+				<img src="image/pie_img.png" />
+			</div>
+		</div>
+		
+		<div class="col-md-8 col-md-offset-2">
+			<div id="enu-2" align="center">
+				<h1>Sector Ductos Minatitlan</h1>
+			</div>
+		</div>
+		
+	</div>
+	<h:outputScript library="primefaces" name="jquery/jquery.js" />
+	<script src="boots/js/bootstrap.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script type="text/javascript">
+     $(function () {
+    $('#myTab a:last').tab('show')
+  });
+</script>
+
+</body>
+
+
+</html>

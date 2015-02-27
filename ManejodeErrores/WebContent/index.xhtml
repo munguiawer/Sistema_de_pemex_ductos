@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head></h:head>
+<body>
+   <p:link value="Volver" href="../../PemexDuctos"></p:link>
+	<h:form>
+	<div >
+	 <p:dataTable value="#{errores.clasErrGrup}" var="g"  >
+                
+                  <f:facet name="header">Error de Grupo</f:facet>
+                  <p:column  filterBy="#{g.responsable}" headerText="Responsable">
+                   <p:outputLabel value="#{g.responsable}"></p:outputLabel>
+                  </p:column>
+                   <p:column headerText="Orden">
+                   <p:outputLabel value="#{g.orden}"></p:outputLabel>
+                  </p:column>
+                  
+             
+
+		</p:dataTable>
+		
+		<p:dataTable    value="#{errores.clasErrIncum}" var="g"  >
+                
+                  <f:facet name="header">Incumplimientos</f:facet>
+                  <p:column filterBy="#{g.responsable}" headerText="Responsable">
+                   <p:outputLabel value="#{g.responsable}"></p:outputLabel>
+                  </p:column>
+                   <p:column headerText="Orden">
+                   <p:outputLabel value="#{g.orden}"></p:outputLabel>
+                  </p:column>
+                  
+
+		</p:dataTable>
+		
+		<p:dataTable  value="#{errores.clasErrCero}" var="g"  >
+                
+                  <f:facet name="header">Costos planeados a cero</f:facet>
+                  <p:column filterBy="#{g.responsable}" headerText="Responsable">
+                   <p:outputLabel value="#{g.responsable}"></p:outputLabel>
+                  </p:column>
+                   <p:column headerText="Orden">
+                   <p:outputLabel value="#{g.orden}"></p:outputLabel>
+                  </p:column>
+
+		</p:dataTable>
+		
+		<p:dataTable   value="#{errores.clasErrVein}" var="g"  >
+                
+                  <f:facet name="header">>20%</f:facet>
+                  <p:column filterBy="#{g.responsable}" headerText="Responsable">
+                   <p:outputLabel value="#{g.responsable}"></p:outputLabel>
+                  </p:column>
+                   <p:column headerText="Orden">
+                   <p:outputLabel value="#{g.orden}"></p:outputLabel>
+                  </p:column>
+
+		</p:dataTable>
+		
+		<p:dataTable  value="#{errores.clasErrTexto}" var="g"  >
+                
+                  <f:facet name="header">Sin texto en Operaciones</f:facet>
+                  <p:column filterBy="#{g.responsable}" headerText="Responsable">
+                   <p:outputLabel value="#{g.responsable}"></p:outputLabel>
+                  </p:column>
+                   <p:column headerText="Orden">
+                   <p:outputLabel value="#{g.orden}"></p:outputLabel>
+                  </p:column>
+
+		</p:dataTable>
+		<p:dataTable   value="#{errores.clasErrOtro}" var="g"  >
+                
+                  <f:facet name="header">Error de Responsable</f:facet>
+                  <p:column filterBy="#{g.responsable}" headerText="Responsable">
+                   <p:outputLabel value="#{g.responsable}"></p:outputLabel>
+                  </p:column>
+                   <p:column headerText="Orden">
+                   <p:outputLabel value="#{g.orden}"></p:outputLabel>
+                  </p:column>
+
+		</p:dataTable>
+	</div>
+		
+		
+	</h:form>
+	
+	<p:commandButton value="Enviar"></p:commandButton>
+
+	
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head></h:head>
+<body>
+<!-- si existe un usuario -->
+	<h:outputStylesheet id="usuario">#{sesionManager.ingresar()}</h:outputStylesheet>
+	
+	<p:tooltip />
+
+	<div align="left">
+	<p:link href="../tblMixtas">Volver</p:link>
+	</div>
+         <div id="title" align="center">
+          <label id="titulo">Control de usuarios</label>
+         </div>
+         <br />
+
+	
+
+	<h:form>
+		
+		<p:growl widgetVar="growl" showDetail="true" />
+			<p:tab title="Crear usuario">
+				
+				<p:panel header="Crear usuario nuevo">
+					
+					<h:panelGrid columns="2">
+						<h:outputText value="Usuario: * " />
+						<h:inputText value="#{guardar_Personal.nombre}" pt:placeholder="Nombre" required="true" />
+						<h:outputText value="Clave: * " />
+						<h:inputSecret value="#{guardar_Personal.password}"
+							required="true" pt:placeholder="contraseña" />
+						<h:outputText value="Clave: * " />
+						<h:inputSecret value="#{guardar_Personal.password2}"
+							required="true" pt:placeholder="Repetir contraseña"/>
+						<h:outputText title="Rol de usuario" value="Tipo de usuario: * " />
+						<p:selectOneMenu  value="#{guardar_Personal.rol}">
+							<f:selectItems value="#{guardar_Personal.listaRol}" var="t"
+								itemLabel="#{t.tipo}" itemValue="#{t.idRoles}" />
+						</p:selectOneMenu>
+					</h:panelGrid>
+					<h:panelGrid columns="1">
+					<p:outputLabel  value="#{guardar_Personal.estado}" id="estado"></p:outputLabel>
+						<p:commandButton value="Guardar" title="Si no le sale guardado no se ha guardado"
+							action="#{guardar_Personal.Guardar_usuario()}" update="estado" />
+
+					</h:panelGrid>
+				</p:panel>
+
+			</p:tab>
+
+
+		
+	</h:form>
+ <br />
+ 
+  
+	<h:form>
+		<p:dataTable id="tabs" var="r"  value="#{tablaUsuarios.listUsuario}"
+			editable="true" paginator="true" rows="5" >
+			<p:ajax event="rowEdit" listener="#{tablaUsuarios.update}"></p:ajax>
+			
+			<f:facet name="header">
+             <h:outputText value="Editar usuarios" />
+            </f:facet>
+			<p:column filterBy="#{r.nombre}"  headerText="Usuario">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{r.nombre}" />
+					</f:facet>
+					<f:facet name="input">
+						<h:inputText value="#{r.nombre}" />
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<!-- para guardar un objeto dentro de otro obtenemos su id
+			     (tipo) es un int que usaremos para guardar el id-->
+			<p:column headerText="Rol">
+				<p:cellEditor>
+					<f:facet name="output">
+						<h:outputText value="#{r.role.tipo}" />
+					</f:facet>
+					<f:facet name="input">
+						<p:selectOneMenu value="#{tablaUsuarios.rol}">
+							<f:selectItems value="#{guardar_Personal.listaRol}" var="t"
+								itemLabel="#{t.tipo}" itemValue="#{t.idRoles}" />
+						</p:selectOneMenu>
+					</f:facet>
+				</p:cellEditor>
+			</p:column>
+			<p:column headerText="Editar">
+				<p:rowEditor  />
+			</p:column>
+			<p:column styleClass="titulo" headerText="Eliminar">
+			<p:commandButton  value="BORRAR"  update="tabs"  title="Borrar al usuario #{r.nombre}" >
+				<p:ajax event="click" listener="#{tablaUsuarios.borrar(r)}" />
+				</p:commandButton>
+				
+			</p:column>
+			
+			
+		</p:dataTable>
+		
+		
+	</h:form>
+
+	<style type="text/css">
+ #titulo {
+	font-weight: normal;
+	color: graytext;
+	letter-spacing: 1pt;
+	word-spacing: -1pt;
+	font-size: 37px;
+	text-align: center;
+	font-family: arial black, sans-serif;
+	line-height: 1;
+}
+</style>
+
+
+
+
+
+
+
+</body>
+</html>

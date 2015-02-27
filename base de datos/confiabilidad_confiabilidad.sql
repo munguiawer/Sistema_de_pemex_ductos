@@ -1,0 +1,55 @@
+CREATE DATABASE  IF NOT EXISTS `confiabilidad` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `confiabilidad`;
+-- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
+--
+-- Host: 127.0.0.1    Database: confiabilidad
+-- ------------------------------------------------------
+-- Server version	5.6.17
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `confiabilidad`
+--
+
+DROP TABLE IF EXISTS `confiabilidad`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `confiabilidad` (
+  `idcon` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(45) NOT NULL,
+  `realizado` double NOT NULL,
+  `planeado` double NOT NULL,
+  PRIMARY KEY (`idcon`)
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `confiabilidad`
+--
+
+LOCK TABLES `confiabilidad` WRITE;
+/*!40000 ALTER TABLE `confiabilidad` DISABLE KEYS */;
+INSERT INTO `confiabilidad` VALUES (45,'CMCV',77,79.68),(46,'M',85,87),(47,'CCH',72,78.02),(48,'CYL',76,78.81),(49,'OYL',59,81.79),(50,'PP',68,84.84),(51,'VO',75,80.07),(52,'FPI',63,81.42),(53,'ALRM',80,80.13),(54,'AT',82,87.15),(55,'CET',63,80.95),(56,'MCC',0.82,81.98),(57,'IBR',77,84.54),(58,'AYS',100,100);
+/*!40000 ALTER TABLE `confiabilidad` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-02-27 13:40:04

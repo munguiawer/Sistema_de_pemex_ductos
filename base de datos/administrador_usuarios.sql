@@ -1,0 +1,58 @@
+CREATE DATABASE  IF NOT EXISTS `administrador` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci */;
+USE `administrador`;
+-- MySQL dump 10.13  Distrib 5.6.17, for Win32 (x86)
+--
+-- Host: 127.0.0.1    Database: administrador
+-- ------------------------------------------------------
+-- Server version	5.6.17
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `usuarios`
+--
+
+DROP TABLE IF EXISTS `usuarios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `usuarios` (
+  `idUsuarios` int(11) NOT NULL AUTO_INCREMENT,
+  `Nombre` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `Password` varchar(45) COLLATE utf8_spanish_ci NOT NULL,
+  `Rol` int(11) NOT NULL,
+  PRIMARY KEY (`idUsuarios`),
+  UNIQUE KEY `Nombre_UNIQUE` (`Nombre`),
+  KEY `fk_Usuarios_Roles_idx` (`Rol`),
+  CONSTRAINT `fk_Usuarios_Roles` FOREIGN KEY (`Rol`) REFERENCES `roles` (`idRoles`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+LOCK TABLES `usuarios` WRITE;
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` VALUES (29,'jose luis','78ae09d1075c2ede457ef69b7b125a9f',3),(36,'506343','41bb9efd1fb01f3727f3d2dd29f8caa2',4),(37,'415519','86a20523df37e48632641137331151a3',4),(38,'846660','411281ff3dc9695eec0fabd9bfd107e0',4),(39,'187396','b3fb00d1cb6e88bafd4f674f585f50fb',4),(40,'178330','93ba1cc55b0f529e09e5254dc23a8910',4),(41,'178309','38489d36294b8c65cf2c719eea51aa4d',1),(42,'432887','591c53836e6ca0d8d491baeec61deee1',1),(43,'468975','294a6ae5591318d22713f2a6dac3d56e',4),(44,'240137','d41d8cd98f00b204e9800998ecf8427e',4),(45,'203542','ea145fdc1a12eca5f86ce4a4d63fc306',4),(46,'425965','455026461087d19653921c6d09e34626',4),(47,'552191','71e838e87dcf21205855fd66b09fb549',4),(48,'979335','a4e2a82a7e4d1a235cd4ab56eced5109',4),(52,'sd','d9729feb74992cc3482b350163a1a010',2);
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-02-27 13:40:04

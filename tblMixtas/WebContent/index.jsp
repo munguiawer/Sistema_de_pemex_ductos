@@ -211,7 +211,7 @@
 									<th>CTEC</th>
 									<th>SUBTOTAL</th>
 									<th>CERR</th>
-									<th>TOTAL</th>
+									<th>SUBTOTAL+CERR</th>
 									<th>AVANCE</th>
 									<th>EN EJECUCION</th>
 									<th>TOTAL</th>
@@ -274,10 +274,10 @@
 							     <% if(total1>=90){ %>
 							     <td class="bien"><%= df.format(total1)+"%" %></td>
 							     <%} %>
-							     <% if(total1>=60 && total1<=89){ %>
+							     <% if(total1>=60 && total1<90){ %>
 							     <td class="regular"><%= df.format(total1)+"%" %></td> 
 							     <%} %>
-							     <% if(total1>=0 && total1 <= 59 ){ %>
+							     <% if(total1>=0 && total1 <60 ){ %>
 							     <td class="mal" style="color: white; "><%= df.format(total1)+"%" %></td>
 							     <%} %>
 							     						     
@@ -298,10 +298,10 @@
 								<% if((ttl1 / 6)>=90){ %>
 								<td class="bien"><%=df.format(ttl1 / 6)+"%"%></td>
 								<%} %>
-								<% if((ttl1 / 6)>=60 && (ttl1 / 6)<=89){ %>
+								<% if((ttl1 / 6)>=60 && (ttl1 / 6)<90){ %>
 								<td class="regular"><%=df.format(ttl1 / 6)+"%"%></td>
 								<%} %>
-								<% if((ttl1 / 6)>=0 && (ttl1 / 6)<= 59 ){ %>
+								<% if((ttl1 / 6)>=0 && (ttl1 / 6)< 60 ){ %>
 								<td class="mal" style="color: white;" ><%=df.format(ttl1 / 6)+"%"%></td>
 								<%} %>
 								<td class="pie"><%=ejec%></td>
@@ -361,10 +361,10 @@
 							     <% if(total1>=90){ %>
 							     <td class="bien"><%= df.format(total1)+"%" %></td>
 							     <%} %>
-							     <% if(total1>=60 && total1<=89){ %>
+							     <% if(total1>=60 && total1<90){ %>
 							     <td class="regular"><%= df.format(total1)+"%" %></td> 
 							     <%} %>
-							     <% if(total1>=0 && total1 <= 59 ){ %>
+							     <% if(total1>=0 && total1 <60 ){ %>
 							     <td class="mal" style="color: white;"><%= df.format(total1)+"%" %></td>
 							     <%} %>
 							     						     
@@ -385,10 +385,10 @@
 								<% if((ttl12 / 5)>=90){ %>
 								<td class="bien"><%=df.format(ttl12 / 5)+"%"%></td>
 								<%} %>
-								<% if((ttl12 / 5)>=60 && (ttl12 / 5)<=89){ %>
+								<% if((ttl12 / 5)>=60 && (ttl12 / 5)<90){ %>
 								<td class="regular"><%=df.format(ttl12 / 5)+"%"%></td>
 								<%} %>
-								<% if((ttl12 / 5)>=0 && (ttl12 / 5)<= 59 ){ %>
+								<% if((ttl12 / 5)>=0 && (ttl12 / 5)<60 ){ %>
 								<td class="mal" style="color: white;"><%=df.format(ttl12 / 5)+"%"%></td>
 								<%} %>
 								<td class="pie"><%=ejec2%></td>
@@ -449,10 +449,10 @@
 							     <% if(total1>=90){ %>
 							     <td class="bien"><%= df.format(total1)+"%" %></td>
 							     <%} %>
-							     <% if(total1>=60 && total1<=89){ %>
+							     <% if(total1>=60 && total1<90){ %>
 							     <td class="regular"><%= df.format(total1)+"%" %></td> 
 							     <%} %>
-							     <% if(total1>=0 && total1 <= 59 ){ %>
+							     <% if(total1>=0 && total1 <60 ){ %>
 							     <td class="mal" style="color: white;"><%= df.format(total1)+"%" %></td>
 							     <%} %>
 							     						     
@@ -474,10 +474,10 @@
 								<% if((ttl13)>=90){ %>
 								<td class="bien"><%=df.format(ttl13)+"%"%></td>
 								<%} %>
-								<% if((ttl13 )>=60 && (ttl13)<=89){ %>
+								<% if((ttl13 )>=60 && (ttl13)<90){ %>
 								<td class="regular"><%=df.format(ttl13 )+"%"%></td>
 								<%} %>
-								<% if((ttl13 )>=0 && (ttl13)<= 59 ){ %>
+								<% if((ttl13 )>=0 && (ttl13)<60 ){ %>
 								<td class="mal" style="color: white;"><%=df.format(ttl13)+"%"%></td>
 								<%} %>
 								<td class="pie"><%=ejec3%></td>
@@ -539,10 +539,10 @@
 							     <% if(total1>=90){ %>
 							     <td class="bien"><%= df.format(total1)+"%" %></td>
 							     <%} %>
-							     <% if(total1>=60 && total1<=89){ %>
+							     <% if(total1>=60 && total1<90){ %>
 							     <td class="regular"><%= df.format(total1)+"%" %></td> 
 							     <%} %>
-							     <% if(total1>=0 && total1 <= 59 ){ %>
+							     <% if(total1>=0 && total1 <60 ){ %>
 							     <td class="mal" style="color: white;"><%= df.format(total1)+"%" %></td>
 							     <%}else{ %>
 							     <td class="mal" style="color: white;"><%=0+"%"%></td>
@@ -566,10 +566,10 @@
 								<% if((ttl14 / 2)>=90){ %>
 								<td class="bien"><%=df.format(ttl14 / 2)+"%"%></td>
 								<%} %>
-								<% if((ttl14 / 2)>=60 && (ttl14 / 2)<=89){ %>
+								<% if((ttl14 / 2)>=60 && (ttl14 / 2)<90){ %>
 								<td class="regular"><%=df.format(ttl14 / 2)+"%"%></td>
 								<%} %>
-								<% if((ttl14 / 2)>=0 && (ttl14 / 2)<= 59 ){ %>
+								<% if((ttl14 / 2)>=0 && (ttl14 / 2)<60 ){ %>
 								<td class="mal" style="color: white;"><%=df.format(ttl14 / 2)+"%"%></td>
 								<%} else{%>
 								<td class="mal" style="color: white;"><%=0+"%"%></td>

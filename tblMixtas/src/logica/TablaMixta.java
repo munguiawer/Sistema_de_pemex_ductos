@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -162,7 +161,7 @@ public class TablaMixta {
     public int errores(String res) {
 	int cont = 0;
 	String estado = "";
-	String[] palabras = new String[2];
+	String[] palabras = new String[7]; // modifique de 2 a 7
 	String grupos = "";
 	int error = 0;
 	while (cont < ListaMixtas.size()) {
@@ -184,6 +183,30 @@ public class TablaMixta {
 
 		estado = ListaMixtas.get(cont).getEstado().trim();
 		palabras = estado.split(" ");
+		
+		//incumplimiento de no impreso
+		if(palabras[0].equals("LIB.") || palabras[0].equals("CERR") || palabras[0].equals("CTEC"))
+		{
+		    
+		    
+		    boolean impreso = false;
+		    
+		    for(int i =0 ; i<palabras.length;i++)
+		    {
+			if(palabras[i].equals("IMPR"))
+			{
+			    impreso = true;
+			    break;
+			}
+		    }
+		    
+		    if(impreso == false)
+		    {
+			error++;
+		    }
+		}
+		
+		
 
 		if (palabras[1].equals("NOTP") || palabras[1].equals("NEJE")
 			|| palabras[1].equals("PTBO")) {
@@ -340,7 +363,7 @@ public class TablaMixta {
     public String error_incum(String res) {
 	int cont = 0;
 	String estado = "";
-	String[] palabras = new String[2];
+	String[] palabras = new String[8];
 	
 	String error ="";
 	while (cont < ListaMixtas.size()) {
@@ -354,6 +377,25 @@ public class TablaMixta {
 
 		estado = ListaMixtas.get(cont).getEstado().trim();
 		palabras = estado.split(" ");
+		
+		// incumplimiento de no impreso
+		if (palabras[0].equals("LIB.") || palabras[0].equals("CERR")
+			|| palabras[0].equals("CTEC")) {
+
+		    boolean impreso = false;
+
+		    for (int i = 0; i < palabras.length; i++) {
+			if (palabras[i].equals("IMPR")) {
+			    impreso = true;
+			    break;
+			}
+		    }
+
+		    if (impreso == false) {
+			 error+= "|"+ListaMixtas.get(cont).getOrden()+"|"+"<br/>";
+		    }
+		}
+
 
 		if (palabras[1].equals("NOTP") || palabras[1].equals("NEJE")
 			|| palabras[1].equals("PTBO")) {

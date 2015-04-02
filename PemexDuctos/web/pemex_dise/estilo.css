@@ -1,0 +1,41 @@
+body{
+	font-size:12px;
+	background: rgba(226,226,226,1);
+
+    
+}
+
+
+.content-box-blue {
+	height: 20px;
+	background: rgba(43,82,57,0.99);
+background: -moz-linear-gradient(top, rgba(43,82,57,0.99) 0%, rgba(43,82,57,1) 0%, rgba(43,82,57,1) 2%, rgba(30,105,58,1) 26%, rgba(47,99,66,1) 49%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(43,82,57,0.99)), color-stop(0%, rgba(43,82,57,1)), color-stop(2%, rgba(43,82,57,1)), color-stop(26%, rgba(30,105,58,1)), color-stop(49%, rgba(47,99,66,1)));
+background: -webkit-linear-gradient(top, rgba(43,82,57,0.99) 0%, rgba(43,82,57,1) 0%, rgba(43,82,57,1) 2%, rgba(30,105,58,1) 26%, rgba(47,99,66,1) 49%);
+background: -o-linear-gradient(top, rgba(43,82,57,0.99) 0%, rgba(43,82,57,1) 0%, rgba(43,82,57,1) 2%, rgba(30,105,58,1) 26%, rgba(47,99,66,1) 49%);
+background: -ms-linear-gradient(top, rgba(43,82,57,0.99) 0%, rgba(43,82,57,1) 0%, rgba(43,82,57,1) 2%, rgba(30,105,58,1) 26%, rgba(47,99,66,1) 49%);
+background: linear-gradient(to bottom, rgba(43,82,57,0.99) 0%, rgba(43,82,57,1) 0%, rgba(43,82,57,1) 2%, rgba(30,105,58,1) 26%, rgba(47,99,66,1) 49%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2b5239', endColorstr='#2f6342', GradientType=0 );
+}
+#header{
+	background: rgba(226,226,226,1);
+background: -moz-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(184,180,184,1) 84%, rgba(209,209,209,1) 97%, rgba(173,164,173,1) 100%);
+background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(226,226,226,1)), color-stop(84%, rgba(184,180,184,1)), color-stop(97%, rgba(209,209,209,1)), color-stop(100%, rgba(173,164,173,1)));
+background: -webkit-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(184,180,184,1) 84%, rgba(209,209,209,1) 97%, rgba(173,164,173,1) 100%);
+background: -o-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(184,180,184,1) 84%, rgba(209,209,209,1) 97%, rgba(173,164,173,1) 100%);
+background: -ms-linear-gradient(top, rgba(226,226,226,1) 0%, rgba(184,180,184,1) 84%, rgba(209,209,209,1) 97%, rgba(173,164,173,1) 100%);
+background: linear-gradient(to bottom, rgba(226,226,226,1) 0%, rgba(184,180,184,1) 84%, rgba(209,209,209,1) 97%, rgba(173,164,173,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#ada4ad', GradientType=0 );
+z-index: 4;
+}
+
+
+
+
+
+
+#carru{
+	padding-top: 18px;
+	z-index: -3x;
+	
+}

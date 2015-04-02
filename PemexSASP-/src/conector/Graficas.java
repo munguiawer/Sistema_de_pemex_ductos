@@ -14,20 +14,20 @@ public class Graficas {
  private    String b = "bien";
 	 
 	
-	public Graficas() {
-		Mensual();
-		Trimestral();
-		Semestral();
+	public Graficas(int year) {
+		Mensual(year);
+		Trimestral(year);
+		Semestral(year);
 		
 	}
 	
-	private void Semestral() {
+	private void Semestral(int year) {
         int i =0;
 		
 		try {
 			Statement st = con.createStatement();
 			
-			st.executeQuery("SELECT * FROM datos WHERE periodo = 'Semestral'");
+			st.executeQuery("SELECT * FROM sasp."+year+" WHERE periodo = 'Semestral'");
 			while(st.getResultSet().next())
 			{
 				i++;
@@ -36,18 +36,21 @@ public class Graficas {
 				Semestral[i].setJunio(st.getResultSet().getFloat("junio"));
 				Semestral[i].setDiciembre(st.getResultSet().getFloat("diciembre"));
 			}
-		}catch(Exception e){}
+		}catch(Exception e){
+		    
+		    System.out.println(e.getMessage());
+		}
 		
 	}
 
-	private void Trimestral() {
+	private void Trimestral(int year) {
 		
 		int i =0;
 		
 		try {
 			Statement st = con.createStatement();
 			
-			st.executeQuery("SELECT * FROM datos WHERE periodo = 'Trimestral'");
+			st.executeQuery("SELECT * FROM sasp."+year+" WHERE periodo = 'Trimestral'");
 			while(st.getResultSet().next())
 			{
 				i++;
@@ -59,11 +62,14 @@ public class Graficas {
 				Trimestral[i].setDiciembre(st.getResultSet().getFloat("diciembre"));
 				
 			}
-		}catch(Exception e){}
+		}catch(Exception e){
+		    
+		    System.out.println(e.getMessage());
+		}
 		
 	}
 
-	public void Mensual()
+	public void Mensual(int year)
 	{
 		
 		int i =0;
@@ -71,7 +77,7 @@ public class Graficas {
 		try {
 			Statement st = con.createStatement();
 			
-			st.executeQuery("SELECT * FROM datos WHERE periodo = 'Mensual'");
+			st.executeQuery("SELECT * FROM sasp."+year+" WHERE periodo = 'Mensual'");
 			while(st.getResultSet().next())
 			{
 				i++;

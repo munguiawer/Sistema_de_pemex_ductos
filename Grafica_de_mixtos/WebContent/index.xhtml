@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets"> 
+
+<h:head></h:head> 
+<body> 
+
+<p:link value="Regresar" href="../tblMixtas/"></p:link>
+<h:form>
+<!-- <p:outputLabel value="Desde"></p:outputLabel>
+<p:calendar  value="#{logica.date}" locale="es" showButtonPanel="true" navigator="true"/>
+<br/>
+<p:outputLabel value="Hasta "></p:outputLabel>
+<p:calendar  value="z#{logica.date2}" locale="es" showButtonPanel="true" navigator="true"/>
+<br/>
+<p:commandButton update="grafica" action="#{logica.actualizar()}" value="Actualizar"></p:commandButton>
+ -->
+ <p:chart id="grafica" style=" width:3000px;height:700px;  " type="line" model="#{logica.model}" />
+ </h:form>
+</body> 
+</html>

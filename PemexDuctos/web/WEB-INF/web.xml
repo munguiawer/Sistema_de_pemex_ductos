@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>admin</filter-name>
+        <filter-class>filtros.admin</filter-class>
+    </filter>
+    <filter>
+        <filter-name>user</filter-name>
+        <filter-class>filtros.user</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>user</filter-name>
+        <url-pattern>/correo/*</url-pattern>
+        <url-pattern>/pages/*</url-pattern>
+        <url-pattern>/pages/tables/*</url-pattern>
+        <url-pattern>/fullcalendar-2.2.5/demos/*</url-pattern>
+        <servlet-name>Calendar2Servlet</servlet-name>
+        <servlet-name>CalendarJsonServlet</servlet-name>
+        <servlet-name>mantenimientoServlet</servlet-name>
+        <servlet-name>operacionesServlet</servlet-name>
+        <servlet-name> sipaServlet</servlet-name>
+        <servlet-name>uatServlet</servlet-name>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>admin</filter-name>
+        <url-pattern>/admin/*</url-pattern>
+        <url-pattern>/admin/Loguin/*</url-pattern>
+        <url-pattern>/admin/Loguin/register.html</url-pattern>
+        <url-pattern>/admin/Manager/*</url-pattern>
+         <servlet-name>correoMod</servlet-name>
+    </filter-mapping>
+    <session-config>
+    <session-timeout>-1</session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>login.jsp</welcome-file>
+    </welcome-file-list>
+    
+</web-app>

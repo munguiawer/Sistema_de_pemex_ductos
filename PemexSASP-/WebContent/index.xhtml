@@ -80,9 +80,39 @@
 			           <img src="image/asp.jpg" />
 			        </div>
 			</div>
-				<div class="col-md-7">
-				
-					<ul class="nav nav-tabs" role="tablist" id="myTab">
+			<h:form>
+			<h:panelGrid columns="3">
+			<p:outputLabel value="Seleccione el año:"></p:outputLabel>
+			<p:selectOneMenu style="width:120px;" value="#{graficas_bean.year}">
+						<f:selectItems value="#{graficas_bean.years}" var="t"
+							itemLabel="#{t}" itemValue="#{t}" />
+					</p:selectOneMenu>
+					
+				<p:commandButton update="dats"  action="#{graficas_bean.Actualizar}" value="Actualizar" />	
+					
+			</h:panelGrid>
+					
+					
+					<div class="col-md-7">
+
+
+						<p:tabView id="dats" dynamic="true">
+						<p:ajax event="tabChange" update="men,trim,seme" listener="#{graficas_bean.Actualizar}" />
+							<p:tab  title="Mensual">
+								<p:chart id="men" type="line" model="#{graficas_bean.mensual}"
+									rendered="true"></p:chart>
+							</p:tab>
+							<p:tab title="Trimestral">
+								<p:chart id="trim" type="line" model="#{graficas_bean.trimestral}"
+								rendered="true"></p:chart>
+							</p:tab>
+							<p:tab title="Semestral">
+								<p:chart id="seme"  type="line" model="#{graficas_bean.semestral}"
+								rendered="true"></p:chart>
+							</p:tab>
+						</p:tabView>
+
+					<!-- 	<ul class="nav nav-tabs" role="tablist" id="myTab">
 						<li class="active"><a href="#mensual" role="tab"
 							data-toggle="tab">Mensual</a></li>
 						<li><a href="#trimestral" role="tab" data-toggle="tab">Trimestral</a>
@@ -96,25 +126,25 @@
 						<div class="tab-pane active" id="mensual">
 							<br />
 							<div class="col-md-11">
-								<p:chart type="line" model="#{graficas_bean.mensual}"
+								<p:chart id="men" type="line" model="#{graficas_bean.mensual}"
 									rendered="true"></p:chart>
 							</div>
 
 						</div>
 						<div class="tab-pane active" id="trimestral">
 							<br />
-							<p:chart type="line" model="#{graficas_bean.trimestral}"
+							<p:chart id="trim" type="line" model="#{graficas_bean.trimestral}"
 								rendered="true"></p:chart>
 						</div>
 						<div class="tab-pane active" id="semestral">
 							<br />
-							<p:chart type="line" model="#{graficas_bean.semestral}"
+							<p:chart id="seme"  type="line" model="#{graficas_bean.semestral}"
 								rendered="true"></p:chart>
 						</div>
 
-					</div>
+					</div> -->
 				</div>
-
+           </h:form>
 			</div>
 		</div>
 	</div>
@@ -144,8 +174,9 @@
 	<script src="boots/js/bootstrap.js" type="text/javascript"
 		charset="utf-8"></script>
 	<script type="text/javascript">
+	
      $(function () {
-    $('#myTab a:last').tab('show')
+     $('#myTab a:last').tab('show')
   });
 </script>
 

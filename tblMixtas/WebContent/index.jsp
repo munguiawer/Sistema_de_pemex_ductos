@@ -5,6 +5,9 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Locale" %>
 <%@ page import="tblMixtas.*" %>
+<%@ page import="Modelo.*" %>
+<%@ page import="variable.*" %>
+<%@ page import="java.util.*" %>
 <%
     TablaMixta tbl = new TablaMixta();
     int con = 0; // operaciones
@@ -20,6 +23,7 @@
 <head>
 <meta charset="UTF-8" />
 <title>Document</title>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.css" />
     <link rel="stylesheet" href="dist/css/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="pemex_dise/estilo.css">
@@ -48,13 +52,14 @@
 
 						<nav>
 							<ul class="menu">
-								<li><a href="#"><span class="iconic home"></span>
+								<li><a href="http://colaboraciondesa/pgpb/sd-sdmin/SitePages/Inicio.aspx"><span class="iconic home"></span>
 										Inicio</a></li>
 								<li><a href="#"><span class="iconic plus-alt"></span>Planeación
-										sap </a>
+										SAP </a>
 									<ul>
 
 										<li><a id="irMixtos" href="#">Status Ordenes</a></li>
+										<li><a href="../../../Grafica_de_mixtos/">Grafica</a></li>
 										<li><a
 											href="../../../PemexDuctos/fullcalendar-2.2.5/demos/agenda-views.html">Original</a></li>
 										<li><a
@@ -64,7 +69,7 @@
 								<li><a href="#"><span class="iconic magnifying-glass"></span>
 										Confiabilidad operacional</a>
 									<ul>
-
+                                          <li><a href="https://onedrive.live.com/view.aspx?resid=4401D0A477C4B47B!2797&ithint=file%2cxlsx&app=Excel&authkey=!AKvKW8exsnUXl6I">TCO Indicadores</a></li>
 										<li><a href="../../../PemexDuctos/pages/confiabilidad.jsp">Confiabilidad</a></li>
 									</ul></li>
 								<li><a href="#"><span class="iconic map-pin"></span>
@@ -181,6 +186,8 @@
 				<span class="glyphicon  glyphicon-floppy-disk"></span> Copiar a
 				excel
 			</button>
+			
+			
 		</div>
 	</div>
 	<br/>
@@ -196,13 +203,18 @@
 
 					<!-- Default panel contents -->
 					<div class="panel-heading">
-					<%  SimpleDateFormat formateador = new SimpleDateFormat("dd 'de' MM 'del' yyyy  HH:mm:ss", new Locale("es_ES")); %>
+					<%
+					GuardarVariable gb = new GuardarVariable();
+					List<Responsables_variable> lista = new ArrayList<Responsables_variable>();
+					Responsables_variable res[] =  new Responsables_variable [80];
+					    int cont=0,cont2=0,cont3=0,cont4=0;%>
+					<%  SimpleDateFormat formateador = new SimpleDateFormat("dd 'de' MMMM 'del' yyyy  HH:mm:ss", new Locale("es","MX")); %>
 						<h3>Actualizada al: &nbsp; <%= formateador.format(tbl.getListHora().get(0).getHora()) %></h3>
 					</div>
 					<div class="panel-body">
 
 						<!-- Mixtas tablas -->
-						<table id="mixtas" class="table table-condensed>tbody>tr>td col-md-8  col-md-offset-2">
+						<table id="mixtas" class="table  col-md-8  col-md-offset-2">
 							<thead>
 								<tr>
 
@@ -211,7 +223,7 @@
 									<th>CTEC</th>
 									<th>SUBTOTAL</th>
 									<th>CERR</th>
-									<th>SUBTOTAL+CERR</th>
+									<th>SUBTOTAL<br/>+CERR</th>
 									<th>AVANCE</th>
 									<th>EN EJECUCION</th>
 									<th>TOTAL</th>
@@ -237,7 +249,8 @@
 							 <%  if(a.getArea().endsWith("OPERACION")){ %>
 							 
 							 <%
-							  
+							
+							 
 							  int subtotal = tbl.cetec(a.getId())+
 							                 tbl.AbierLib(a.getId());
 							 
@@ -249,6 +262,13 @@
 							 float x = new Float(total);
 							 float y = new Float(tbl.cerradas(a.getId()));
 							 float total1 = y / x * 100; //avance
+							 //modif
+						
+							 res[cont] = new Responsables_variable();
+							 res[cont].setResponsable(a.getId());
+							 res[cont].setValor(total1);
+							 
+							 lista.add(res[cont]);
 							 
 							 // pie de tabla
 							  ablib += tbl.AbierLib(a.getId());
@@ -279,15 +299,17 @@
 							     <%} %>
 							     <% if(total1>=0 && total1 <60 ){ %>
 							     <td class="mal" style="color: white; "><%= df.format(total1)+"%" %></td>
-							     <%} %>
+							     <%}%>
+								
 							     						     
 							     <td><%= tbl.execu(a.getId()) %></td>
 							     <td><%= totalFinal %></td>
 							     <td><%= tbl.errores(a.getId()) %></td>
 							     
 							 </tr>
+							 <%cont++;} %>
 							 <%} %>
-							 <%} %>
+							 
 							 <td class="pie"><%out.println("OPERACION");%></td>
 								<td class="pie"><%=ablib%></td>
 								<td class="pie"><%=cet%></td>
@@ -303,7 +325,8 @@
 								<%} %>
 								<% if((ttl1 / 6)>=0 && (ttl1 / 6)< 60 ){ %>
 								<td class="mal" style="color: white;" ><%=df.format(ttl1 / 6)+"%"%></td>
-								<%} %>
+								<%}%>
+								
 								<td class="pie"><%=ejec%></td>
 								<td class="pie"><%=ttl%></td>
 								<td class="pie"><%=err%></td>
@@ -337,6 +360,14 @@
 							 float y = new Float(tbl.cerradas(a.getId()));
 							 float total1 = y / x * 100; //avance
 							 
+							//modif
+								
+							 res[cont2] = new Responsables_variable();
+							 res[cont2].setResponsable(a.getId());
+							 res[cont2].setValor(total1);
+							 
+							 lista.add(res[cont2]);
+							 
 							 // pie de tabla
 							  ablib2 += tbl.AbierLib(a.getId());
 							  cet2 += tbl.cetec(a.getId());
@@ -366,14 +397,15 @@
 							     <%} %>
 							     <% if(total1>=0 && total1 <60 ){ %>
 							     <td class="mal" style="color: white;"><%= df.format(total1)+"%" %></td>
-							     <%} %>
+							    <%}%>
+								
 							     						     
 							     <td><%= tbl.execu(a.getId()) %></td>
 							     <td><%= totalFinal %></td>
 							     <td><%= tbl.errores(a.getId()) %></td>
 							     
 							 </tr>
-							 <%} %>
+							 <%cont2++;} %>
 							 <%} %>
 							 <td class="pie"><%out.println("MANTENIMIENTO");%></td>
 								<td class="pie"><%=ablib2%></td>
@@ -390,7 +422,8 @@
 								<%} %>
 								<% if((ttl12 / 5)>=0 && (ttl12 / 5)<60 ){ %>
 								<td class="mal" style="color: white;"><%=df.format(ttl12 / 5)+"%"%></td>
-								<%} %>
+								<%}%>
+								
 								<td class="pie"><%=ejec2%></td>
 								<td class="pie"><%=ttl2%></td>
 								<td class="pie"><%=err2%></td>
@@ -425,6 +458,14 @@
 							 float y = new Float(tbl.cerradas(a.getId()));
 							 float total1 = y / x * 100; //avance
 							 
+							//modif
+								
+							 res[cont3] = new Responsables_variable();
+							 res[cont3].setResponsable(a.getId());
+							 res[cont3].setValor(total1);
+							 
+							 lista.add(res[cont3]);
+							 
 							 // pie de tabla
 							  ablib3 += tbl.AbierLib(a.getId());
 							  cet3 += tbl.cetec(a.getId());
@@ -454,14 +495,15 @@
 							     <%} %>
 							     <% if(total1>=0 && total1 <60 ){ %>
 							     <td class="mal" style="color: white;"><%= df.format(total1)+"%" %></td>
-							     <%} %>
+							     <%}%>
+								
 							     						     
 							     <td><%= tbl.execu(a.getId()) %></td>
 							     <td><%= totalFinal %></td>
 							     <td><%= tbl.errores(a.getId()) %></td>
 							     
 							 </tr>
-							 <%} %>
+							 <%cont3++;} %>
 							 <%} %>
 							 <td class="pie"><%out.println("SEGURIDAD");%></td>
 								<td class="pie"><%=ablib3%></td>
@@ -479,7 +521,8 @@
 								<%} %>
 								<% if((ttl13 )>=0 && (ttl13)<60 ){ %>
 								<td class="mal" style="color: white;"><%=df.format(ttl13)+"%"%></td>
-								<%} %>
+								<%}%>
+								
 								<td class="pie"><%=ejec3%></td>
 								<td class="pie"><%=ttl3%></td>
 								<td class="pie"><%=err3%></td>
@@ -514,6 +557,13 @@
 							 float x = new Float(total);
 							 float y = new Float(tbl.cerradas(a.getId()));
 							 float total1 = y / x * 100; //avance
+							//modif
+								
+							 res[cont4] = new Responsables_variable();
+							 res[cont4].setResponsable(a.getId());
+							 res[cont4].setValor(total1);
+							 
+							 lista.add(res[cont4]);
 							 
 							 // pie de tabla
 							  ablib4 += tbl.AbierLib(a.getId());
@@ -553,8 +603,9 @@
 							     <td><%= tbl.errores(a.getId()) %></td>
 							     
 							 </tr>
+							 <% cont4++;} %>
 							 <%} %>
-							 <%} %>
+							 <% gb.guardar(lista); %>
 							 <td class="pie"><%out.println("UAT");%></td>
 								<td class="pie"><%=ablib4%></td>
 								<td class="pie"><%=cet4%></td>
@@ -579,6 +630,12 @@
 								<td class="pie"><%=err4%></td>
 
 							</tbody>
+							<tfoot>
+								<tr>
+									<th colspan="7" style="text-align: right">Cumplimiento sector minatitlan:</th>
+									<th></th>
+								</tr>
+							</tfoot>
 						</table>
 
 
@@ -591,13 +648,12 @@
 			<div class="row">
 			
 			<!-- Operacion -->
-			<div class="panel panel panel-success col-md-4 col-md-offset-2  ">
+			<div class="panel panel panel-success  col-md-offset-2  col-md-8 ">
 				<div class="panel-heading">
 					<h3>Operacion</h3>
 				</div>
 				<div  class="panel-body">
-					<div id="canvas-operacion">
-						<canvas id="operacion-chart" width="500" height="500" />
+					<div id="canvas-operacion" align="center" style="width: 800px; height: 500px;">	
 					</div>
 					<br/>
 					<div align="center">TOTAL : <%= ttl %> ORDENES</div>
@@ -607,13 +663,13 @@
 			</div>
 			
 			<!-- Mantenimiento -->
-			<div class="panel panel panel-success col-md-4  ">
+			<div class="panel panel panel-success col-md-offset-2 col-md-8  ">
 				<div class="panel-heading">
 					<h3>Mantenimiento</h3>
 				</div>
 				<div  class="panel-body">
-					<div id="canvas-mantenimiento">
-						<canvas id="mantenimiento-chart" width="500" height="500" />
+					<div id="canvas-mantenimiento" style="width: 800px; height: 500px;" >
+						
 					</div>
 					<br/>
 					<div align="center">TOTAL : <%= ttl2 %> ORDENES</div>
@@ -623,13 +679,13 @@
 			</div>
 			
 			<!-- Sipa -->
-			<div class="panel panel panel-success col-md-4 col-md-offset-2  ">
+			<div class="panel panel panel-success col-md-8 col-md-offset-2  ">
 				<div class="panel-heading">
 					<h3>Seguridad</h3>
 				</div>
 				<div  class="panel-body">
-					<div id="canvas-sipa">
-						<canvas id="sipa-chart" width="500" height="500" />
+					<div id="canvas-sipa" style="width: 800px; height: 500px;">
+						
 					</div>
 					<br/>
 					<div align="center">TOTAL : <%= ttl3 %> ORDENES</div>
@@ -639,13 +695,13 @@
 			</div>
 			
 			<!-- UAT -->
-			<div class="panel panel panel-success col-md-4   ">
+			<div class="panel panel panel-success col-md-offset-2 col-md-8   ">
 				<div class="panel-heading">
 					<h3>UAT</h3>
 				</div>
 				<div  class="panel-body">
-					<div id="canvas-uat">
-						<canvas id="uat-chart" width="500" height="500" />
+					<div id="canvas-uat" style="width: 800px; height: 500px;">
+						
 					</div>
 					<br/>
 					<div align="center">TOTAL : <%= ttl4 %> ORDENES</div>
@@ -775,7 +831,7 @@
 	</div>
 
 </div>
-	
+	<div class="loader"></div>
 
 
 
@@ -787,9 +843,76 @@
 	<script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
 	<script src="Chart.js-master/Chart.min.js" type="text/javascript"></script>
 	<script type="text/javascript">
+
+	$(window).load(function() {
+		$(".loader").fadeOut("slow");
+	})
+	
 	$(document).ready(function() {
 		
-		$('#mixtas').DataTable({"paging":   false,"ordering": false,"info":     false});
+		$('#mixtas').DataTable({"paging":   false,"ordering": false,"info":     false,
+			 "footerCallback": function ( row, data, start, end, display ) {
+		            var api = this.api(), data;
+		 
+		            // Remove the formatting to get integer data for summation
+		            var intVal = function ( i ) {
+		                return typeof i === 'string' ?
+		                    i.replace(/[\$,]/g, '')*1 :
+		                    typeof i === 'number' ?
+		                        i : 0;
+		            };
+
+
+		            // Total over all pages
+		            SUBTOTAL_CERR = api
+		                .column( 5 )
+		                .data()
+		                .reduce( function (a, b) {
+		                    return intVal(a) + intVal(b);
+		                } );
+
+		            ERROR = api
+	                .column( 9 )
+	                .data()
+	                .reduce( function (a, b) {
+	                    return intVal(a) + intVal(b);
+	                } );
+
+		            CERRADO = api
+	                .column( 4 )
+	                .data()
+	                .reduce( function (a, b) {
+	                    return intVal(a) + intVal(b);
+	                } );
+
+		            Total = (((CERRADO/2)-(ERROR/2))/(SUBTOTAL_CERR/2))*100;
+
+                    if(Total>=90){
+                    	color = "bien";
+                        }
+                    if(Total>=60 && Total<90)
+                        {
+                          color="regular";
+                        }
+                    if(Total>=0 && Total <60)
+                        {
+                        color = "mal";
+                        }else{
+                           color="mal";
+                            }
+		            
+		 
+		            // Update footer
+		            $( api.column( 7 ).footer() ).html(
+
+		            		'<div  class="'+color+'">'+Total.toFixed(2)+'%'+'</div>'
+		            );
+
+			 }
+
+			});
+
+		
 		$('#tblerror').DataTable({"paging":   false,"ordering": false,"info":     false});
 		
 		$("#irError").click(function() {
@@ -815,6 +938,9 @@
 				// $("#erros").animatedScroll({easing: "easeOutExpo"});
 			});
 		});
+
+	
+	
 	</script>
 	
 	<!-- descargar a excel-->
@@ -838,46 +964,7 @@
     })()
 </script>
 
-<!-- Chart operacion -->
-<script>
 
-		var doughnutData = [
-				{
-					value: <%= ablib %>,
-					color:"#F7464A",
-					highlight: "#FF5A5E",
-					label: "ABIE/LIB"
-				},
-				
-				{
-					value: <%= cet %>,
-					color: "#FDB45C",
-					highlight: "#FFC870",
-					label: "CETEC"
-				},
-				{
-					value: <%= ejec %>,
-					color: "orange",
-					highlight: "orange",
-					label: "EJEC"
-				},
-				{
-					value: <%= cerr %>,
-					color: "green",
-					highlight: "#A8B3C5",
-					label: "CERR"
-				}
-				
-			];
-
-			
-				var ctx = document.getElementById("operacion-chart").getContext("2d");
-				window.myDoughnut = new Chart(ctx).Doughnut(doughnutData, {responsive : true});
-			
-
-
-
-	</script>
 	<!-- Chart Mantenimiento -->
 	
 	<script>
@@ -1001,8 +1088,130 @@
 
 
 	</script>
-	
-	
+	<!-- chart operacion -->
+	<script type="text/javascript">
+
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+      google.setOnLoadCallback(drawChart2);
+      google.setOnLoadCallback(drawChart3);
+      google.setOnLoadCallback(drawChart4);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['ABIE/LIB', <%= ablib %>],
+          ['CETEC', <%= cet %>],
+          ['EJEC', <%= ejec %>],
+          ['CERR', <%= cerr %>]
+         
+        ]);
+
+        // Set chart options
+        var options = {'title':'Operacion',
+        		       // sliceVisibilityThreshold:0,
+        		        legend: {
+        		            position: 'labeled'
+        		        },
+                       colors: ['#FF0000', '#FFC870', '#FF6A37', 'green']};
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.PieChart(document.getElementById('canvas-operacion'));
+        chart.draw(data, options);
+      }
+
+      function drawChart2() {
+
+          // Create the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Topping');
+          data.addColumn('number', 'Slices');
+          data.addRows([
+            ['ABIE/LIB', <%= ablib2 %>],
+            ['CETEC', <%= cet2 %>],
+            ['EJEC', <%= ejec2 %>],
+            ['CERR', <%= cerr2 %>]
+           
+          ]);
+
+          // Set chart options
+           var options = {'title':'Operacion',
+        		        //sliceVisibilityThreshold:0,
+        		        legend: {
+        		            position: 'labeled'
+        		        },
+                       colors: ['#FF0000', '#FDB45C', '#FF6A37', 'green']};
+
+          // Instantiate and draw our chart, passing in some options.
+          var chart = new google.visualization.PieChart(document.getElementById('canvas-mantenimiento'));
+          chart.draw(data, options);
+        }
+      
+      function drawChart3() {
+
+          // Create the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Topping');
+          data.addColumn('number', 'Slices');
+          data.addRows([
+            ['ABIE/LIB', <%= ablib3 %>],
+            ['CETEC', <%= cet3 %>],
+            ['EJEC', <%= ejec3 %>],
+            ['CERR', <%= cerr3 %>]
+           
+          ]);
+
+          // Set chart options
+          var options = {'title':'Operacion',
+        		        //sliceVisibilityThreshold:0,
+        		        legend: {
+        		            position: 'labeled'
+        		        },
+                       colors: ['#FF0000', '#FDB45C', '#FF6A37', 'green']};
+
+          // Instantiate and draw our chart, passing in some options.
+          var chart = new google.visualization.PieChart(document.getElementById('canvas-sipa'));
+          chart.draw(data, options);
+        }
+      
+      function drawChart4() {
+
+          // Create the data table.
+          var data = new google.visualization.DataTable();
+          data.addColumn('string', 'Topping');
+          data.addColumn('number', 'Slices');
+          data.addRows([
+            ['ABIE/LIB', <%= ablib4 %>],
+            ['CETEC', <%= cet4 %>],
+            ['EJEC', <%= ejec4 %>],
+            ['CERR', <%= cerr4 %>]
+           
+          ]);
+
+          var options = {'title':'Operacion',
+  		       // sliceVisibilityThreshold:0,
+  		      legend: {
+		            position: 'labeled'
+		        },
+                 colors: ['#FF0000', '#FDB45C', '#FF6A37', 'green']};
+
+          // Instantiate and draw our chart, passing in some options.
+          var chart = new google.visualization.PieChart(document.getElementById('canvas-uat'));
+          chart.draw(data, options);
+        }
+    </script>
+    
+    
    
 	<style type="text/css">
 .pie {
@@ -1025,7 +1234,7 @@
 }
 
 .mal{
-color: black;
+color: white;
 background: rgba(248,80,50,1);
 background: -moz-linear-gradient(top, rgba(248,80,50,1) 0%, rgba(241,111,92,1) 49%, rgba(240,47,23,1) 82%, rgba(246,41,12,1) 92%, rgba(231,56,39,1) 100%);
 background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(248,80,50,1)), color-stop(49%, rgba(241,111,92,1)), color-stop(82%, rgba(240,47,23,1)), color-stop(92%, rgba(246,41,12,1)), color-stop(100%, rgba(231,56,39,1)));

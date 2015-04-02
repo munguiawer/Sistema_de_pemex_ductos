@@ -8,20 +8,43 @@ import org.primefaces.model.chart.CategoryAxis;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.LineChartModel;
 
+import java.text.SimpleDateFormat;
+import java.util.*;
+
 import conector.Graficas;
 
 public class Graficas_bean {
 	private LineChartModel mensual;
 	private LineChartModel trimestral;
 	private LineChartModel semestral;
+	Date date = new Date();
+	SimpleDateFormat dt = new SimpleDateFormat("yyyy");
 	
-
+	int year ;
+	
+        List <Integer> years = new ArrayList<Integer>();
+        
 	public Graficas_bean() {
-		Mensual();
+	    
+	    //año actual
+	    year = Integer.parseInt(dt.format(date));
+	    
+	    years.clear();
+	    for(int i =0;i<14;i++)
+	    {
+		int yea = 2014;
+		years.add(yea+i);
+	    }
+	    
+	 
+	    Actualizar();
+	}
+        public void Actualizar()
+        {
+                 Mensual();
 		Trimestral();
 		Semestral();
-	}
-
+        }
 	private void Semestral() {
 		semestral = new LineChartModel();
 		Semestres();
@@ -72,7 +95,7 @@ public class Graficas_bean {
 
 	// relleno de datos
 	private void Semestres() {
-		Graficas gf = new Graficas();
+		Graficas gf = new Graficas(year);
 		ChartSeries sem[] = new ChartSeries[10];
 		for (int i = 0; i < gf.getSemestral().length; i++) {
 			if (gf.getSemestral()[i] != null) {
@@ -90,7 +113,7 @@ public class Graficas_bean {
 	}
 	
 	private void Trimestres() {
-		Graficas gf = new Graficas();
+		Graficas gf = new Graficas(year);
 		ChartSeries tri[] = new ChartSeries[20];
 			for (int i = 0; i < gf.getTrimestral().length; i++) {
 				
@@ -114,7 +137,7 @@ public class Graficas_bean {
 	}
    
 	private void Meses() {
-		Graficas gf = new Graficas();
+		Graficas gf = new Graficas(year);
 		ChartSeries mes[] = new ChartSeries[10];					
 			for (int i = 0; i < gf.getMensual().length; i++) {
 				if (gf.getMensual()[i] != null) {
@@ -151,6 +174,20 @@ public class Graficas_bean {
 
 	public LineChartModel getSemestral() {
 		return semestral;
+	}
+
+	public int getYear() {
+	    return year;
+	}
+
+	public void setYear(int year) {
+	    this.year = year;
+	}
+	public List<Integer> getYears() {
+	    return years;
+	}
+	public void setYears(List<Integer> years) {
+	    this.years = years;
 	}
 	
 	

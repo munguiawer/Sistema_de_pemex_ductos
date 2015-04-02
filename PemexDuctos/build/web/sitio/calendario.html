@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="css/fullcalendar.css">
+	<link rel="stylesheet" type="text/css" href="css/fullcalendar.print.css" media='print'>
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui.theme.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+	<script type="text/javascript" src="js/moment.min.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/fullcalendar.js" ></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script type="text/javascript" src="js/lang-all.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$("#calendar").fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay'
+			},
+			eventRender: function (event, element) {
+            element.attr('href', 'javascript:void(0);');
+            element.attr('onclick', 'openModal("' + event.title + '","' + event.description + '","' + event.url + '");');
+        },  lang: 'es',
+			selectable: true,
+			selectHelper: true,
+			eventClick: function(calEvent, jsEvent, view) { 
+           $('#myModalLabel').html(calEvent.title);
+           $('#Description').html(calEvent.description);
+           $('#myModal').modal('show');
+       },editable: false,
+       events:[{
+					title: 'All Day Event',
+					description: 'todo lo que se describe',
+					color: 'skyblue',
+					borderColor: 'blue',   // an option!
+                    textColor: 'black', // an option!
+					start: '2014-07-02'
+					//end:    '2014-07-14'
+				}]
+    
+			
+			
+
+		});
+		/*
+		{
+					title: 'All Day Event',
+					description: 'todo lo que se describe',
+					color: 'skyblue',
+					borderColor: 'blue',   // an option!
+                    textColor: 'black', // an option!
+					start: '2014-07-02'
+					//end:    '2014-07-14'
+				}
+		*/
+
+	});
+	</script>
+	<style>
+
+	body {
+		margin: 0;
+		padding: 0;
+		font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+		font-size: 14px;
+	}
+
+	#calendar {
+		width: 900px;
+		margin: 40px auto;
+	}
+
+</style> 
+	<title>Document</title>
+</head>
+<body>
+    
+	<div id="calendar"></div>
+	<div id="cal_event"></div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body" id="Description">
+        ...
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

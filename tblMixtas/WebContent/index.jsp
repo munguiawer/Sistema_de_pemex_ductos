@@ -831,7 +831,7 @@
 	</div>
 
 </div>
-	<div class="loader"></div>
+	<div class="loader" ></div>
 
 
 
@@ -887,25 +887,23 @@
 
 		            Total = (((CERRADO/2)-(ERROR/2))/(SUBTOTAL_CERR/2))*100;
 
-                    if(Total>=90){
+                    if(Total >= 90){
                     	color = "bien";
                         }
-                    if(Total>=60 && Total<90)
+                    if(Total >= 60 && Total < 90)
                         {
                           color="regular";
                         }
-                    if(Total>=0 && Total <60)
+                    if(Total>= 0 && Total < 60)
                         {
                         color = "mal";
-                        }else{
-                           color="mal";
-                            }
+                        }
 		            
 		 
 		            // Update footer
 		            $( api.column( 7 ).footer() ).html(
 
-		            		'<div  class="'+color+'">'+Total.toFixed(2)+'%'+'</div>'
+		            		'<div  class="'+color+'" align="center">'+Total.toFixed(2)+'%'+'</div>'
 		            );
 
 			 }
@@ -1145,7 +1143,7 @@
           ]);
 
           // Set chart options
-           var options = {'title':'Operacion',
+           var options = {'title':'Mantenimiento',
         		        //sliceVisibilityThreshold:0,
         		        legend: {
         		            position: 'labeled'
@@ -1172,7 +1170,7 @@
           ]);
 
           // Set chart options
-          var options = {'title':'Operacion',
+          var options = {'title':'Seguridad',
         		        //sliceVisibilityThreshold:0,
         		        legend: {
         		            position: 'labeled'
@@ -1198,7 +1196,7 @@
            
           ]);
 
-          var options = {'title':'Operacion',
+          var options = {'title':'Uat',
   		       // sliceVisibilityThreshold:0,
   		      legend: {
 		            position: 'labeled'
